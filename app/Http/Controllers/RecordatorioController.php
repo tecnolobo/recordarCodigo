@@ -31,6 +31,8 @@ class RecordatorioController extends Controller
 
         $imagenes=DB::table('imagens')->get();
         /*$codigos=PmHtml::find(3);
+
+        Rama De pruebas
         dd($codigos->created_at->toFormattedDateString());*/
         $paginadorlaravel = DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
         //dd($paginadorlaravel[0]->created_at->toFormattedDateString());

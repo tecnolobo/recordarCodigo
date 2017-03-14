@@ -1,0 +1,248 @@
+.navigation .nav > li > a:hover, .navigation .nav > li > a:focus {
+	    background-color: #4880FF;
+}
+
+.margin-bottom-10px{
+	margin-bottom: 10px;
+}
+.margin-bottom-15px{
+	margin-bottom: 15px;
+}
+
+.margin-bottom-20px{
+	margin-bottom: 20px;
+}
+
+.margin-bottom-30px{
+	margin-bottom: 30px;
+}
+
+.margin-bottom-40px{
+	margin-bottom: 40px;
+}
+
+.margin-bottom-50px{
+	margin-bottom: 50px;
+}
+
+.margin-bottom-100px{
+	margin-bottom: 100px;
+}
+
+.margin-bottom-150px{
+	margin-bottom: 150px;
+}
+
+
+/**************************/
+
+
+.margin-top-10px{
+	margin-top: 10px;
+}
+.margin-top-15px{
+	margin-top: 15px;
+}
+
+.margin-top-20px{
+	margin-top: 20px;
+}
+
+.margin-top-30px{
+	margin-top: 30px;
+}
+
+.margin-top-40px{
+	margin-top: 40px;
+}
+
+.margin-top-50px{
+	margin-top: 50px;
+}
+
+
+.font-size-20{
+	font-size: 20px;
+}
+
+.font-size-30{
+	font-size: 30px;
+}
+
+.font-size-40{
+	font-size: 40px;
+}
+
+.height-40{
+	height: 40px !important;
+}
+
+.height-50{
+	height: 50px !important;
+}
+
+.height-100{
+	height: 100px !important;
+}
+
+.height-200{
+	height: 200px !important;
+}
+
+.height-300{
+	height: 300px !important;
+}
+
+.height-400{
+	height: 400px !important;
+}
+
+.p-fixed{
+	position:fixed;
+}
+
+.p-relative{
+	position:relative;
+}
+
+.p-absoluto{
+	position: absolute;
+}
+
+
+/*****************Mis css estilos********************/
+
+
+
+time{
+	color:#aaa;
+	font-size: 15px;
+	position:absolute;
+	top:18px;
+	right: 31px;
+}
+
+.thumbnail:hover{
+	-moz-box-shadow:3px 0px 9px -3px #666;/* el primer valor es x el 2 es y. el 3 la dureza d la sombra 4 el ancho de la sombra*/
+	-webkit-box-shadow:3px 0px 9px -3px #666;/*verde*/
+	-ms-box-shadow:3px 0px 9px -3px #666;
+	-o-box-shadow:3px 0px 9px -3px #666;
+}
+
+.punteado{
+	border-style: dotted; 
+  	border-width: 1px; 
+  	border-color: #D7D7D7
+}
+
+/*****Botones*/
+
+
+.col-md-4 > .btn-info{
+	background-color: #AE59B9;
+	border-color: #A84FB5;
+}
+
+	.col-md-4> .btn-info:active{
+		background-color: #9F48AC;
+		border-color: #9F48AC;
+	}
+
+
+
+.eliminar-textarea{
+	display: none;
+	position: absolute;
+    right: 5px;
+    bottom: 180px;
+
+}
+
+.atras{
+	text-decoration: none;	
+	color: black !important;
+}
+
+.atras:hover{
+	color: grey;
+}
+
+.sindatos{
+	border: solid 4px gray;
+	border-style: dashed;
+	height: 100px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction:row;
+	justify-content:center;
+	align-self:center;
+
+}
+
+.sindatos span{
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.popover{
+	width: 205px;
+}
+
+.clickeable{
+    cursor: pointer;
+  }
+
+.titulo-pagina{
+	padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 30px; 
+    color:white;
+    font-weight: bold;
+}
+
+.titulo{
+	padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 30px; 
+    color: gray;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+
+
+.grande{
+	font-size: 40px !important;
+	color: rgba(153, 153, 153, 0.32) !important;
+
+}
+
+.codigos > .col-md-12{
+	padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-top: 50px;
+}
+
+.contenido-codigo{
+	max-height: 500px !important;
+	float: left !important;
+	width: 100% !important;
+	/*margin-bottom: 200px !important;*/
+	resize: both;
+}
+
+.pagination >.active >span{
+	background-color: rgba(181, 89, 185, 1) !important;
+    border-color: rgba(152, 89, 185, 1) !important;
+}
+
+.pagination > li >a{
+	color: #1c1c1d !important;
+}

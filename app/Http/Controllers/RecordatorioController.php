@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;  
 
 use App\Http\Requests;
 
@@ -27,12 +27,8 @@ class RecordatorioController extends Controller
      */
     public function index()
     {   
-
-
         $imagenes=DB::table('imagens')->get();
         /*$codigos=PmHtml::find(3);
-
-        Rama De pruebas
         dd($codigos->created_at->toFormattedDateString());*/
         $paginadorlaravel = DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
         //dd($paginadorlaravel[0]->created_at->toFormattedDateString());
@@ -217,6 +213,10 @@ class RecordatorioController extends Controller
             case 7:
                 $datos=array('jquery',array('html','css','jquery'));
                 break;
+
+            case 8:
+                $datos=array('bootstrap',array('html','css','jquery'));
+                break;
             
             default:
                 # code...
@@ -275,8 +275,15 @@ class RecordatorioController extends Controller
    
 
     public function destroyCodigoHtml($id,Request $request)
-    {   
-        $codigoEliminado=DB::table('proyecto_laravels')->where('id', '=', $id)->get();
+    {   /*se optiene el registro a eliminar para tomar su nombre*/
+        $codigoEliminado=DB::table('proyecto_master_htmls')->where('id', '=', $id)->get();
+
+        /*si el regitro a eliminar no existe se agrega un apagina 404*/
+         if(empty($codigoEliminado)){
+            abort('404');
+        }
+
+
         $codigoEliminado=$codigoEliminado[0]->nombre;
         DB::table('proyecto_master_htmls')->where('id', '=', $id)->delete();
         //return "eliminado";
@@ -301,7 +308,24 @@ class RecordatorioController extends Controller
     public function categoria($id)
     {
         //echo $id;
-        /*$imagenes=DB::table('imagens')->get();
-        return view('layouts.categorias',['imaganes'=>$imagenes]);*/
+        $imagenes=DB::table('imagens')->get();
+        $categoria=DB::table('categorias')->where('id_categoria', '=', $id)->get();
+
+        /*Si no existe la categogia con el id proposionado sacara un error 4040*/
+        if(empty($categoria)){
+            abort('404');
+        }
+
+        if($categoria[0]->nombre != 'laravel'){
+            $coleciones=DB::table('proyecto_master_htmls')->where('id_categoria', '=', $id)->delete();
+        }else{
+            $paginador=DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
+            $coleciones=$paginador->toArray();
+            $coleciones=array_chunk($coleciones['data'], 3, false);
+        }
+        //se obtiene array de los elementos con esta categoria
+        //$colecion=
+
+        return view('layouts.categorias',['imagenes'=>$imagenes, 'categoria'=>$categoria, 'coleciones'=>$coleciones,'paginador'=>$paginador]);
     }
 }

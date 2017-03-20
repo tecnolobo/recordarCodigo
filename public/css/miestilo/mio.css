@@ -25,6 +25,10 @@
 	margin-bottom: 50px;
 }
 
+.margin-bottom-60px{
+	margin-bottom: 60px;
+}
+
 .margin-bottom-100px{
 	margin-bottom: 100px;
 }
@@ -112,7 +116,17 @@
 
 /*****************Mis css estilos********************/
 
+/*Secion categoria*/
+.categoria .titulo{
+	margin-top: 15px;
+	text-transform: uppercase;
+}
 
+.categoria .row .descripsion{
+	white-space: pre-wrap !important;
+}
+
+/* /session categoria*/
 
 time{
 	color:#aaa;
@@ -221,6 +235,7 @@ time{
 .grande{
 	font-size: 40px !important;
 	color: rgba(153, 153, 153, 0.32) !important;
+	text-transform: capitalize;
 
 }
 

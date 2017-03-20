@@ -86,6 +86,11 @@ $(document).ready(function() {
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+			        /*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
 			        crearHtml('Html','html');
 			         $(".codeitem").trigger('create');
 			        break;
@@ -98,6 +103,8 @@ $(document).ready(function() {
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+
+			        /*Laravel*/
 			        crearHtml('Modelo','modelo');
 			        crearHtml('Vista','vista');
 			        crearHtml('Controlador','controlador');
@@ -109,12 +116,15 @@ $(document).ready(function() {
 			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
 			        $("div[id=css]").remove();
 			        $("div[id=html]").remove();
-			        $("div[id=modelo]").remove();
-			        $("div[id=vista]").remove();
-			        $("div[id=controller]").remove();
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+
+			        /*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
 			        crearHtml('Html','html');
 			        crearHtml('Css','css');
 			         $("#codigo").trigger('create');
@@ -123,13 +133,16 @@ $(document).ready(function() {
 			    case 'apphtml':
 			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
 			        $("div[id=html]").remove();
-			        $("div[id=modelo]").remove();
-			        $("div[id=vista]").remove();
-			        $("div[id=controller]").remove();
 			        $("div[id=css]").remove();
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+
+ 					/*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
 			        crearHtml('Html','html');
 			        crearHtml('Css','css');
 			        crearHtml('Php','php');
@@ -140,14 +153,17 @@ $(document).ready(function() {
 
 			    case 'javascript':
 			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        $("div[id=modelo]").remove();
-			        $("div[id=vista]").remove();
-			        $("div[id=controller]").remove();
 			        $("div[id=html]").remove();
 			        $("div[id=css]").remove();
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+
+			         /*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
 			        crearHtml('Html','html');
 			        crearHtml('Javascript','javascript');
 			         $("#codigo").trigger('create');
@@ -155,14 +171,18 @@ $(document).ready(function() {
 
 			    case 'php':
 			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        $("div[id=modelo]").remove();
-			        $("div[id=vista]").remove();
-			        $("div[id=controller]").remove();
+			        
 			        $("div[id=html]").remove();
 			        $("div[id=css]").remove();
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+
+			         /*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
 			        crearHtml('Html','html');
 			        crearHtml('Php','php');
 			        $("#codigo").trigger('create');
@@ -170,14 +190,36 @@ $(document).ready(function() {
 
 			    case 'jquery':
 			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        $("div[id=modelo]").remove();
-			        $("div[id=vista]").remove();
-			        $("div[id=controller]").remove();
 			        $("div[id=html]").remove();
 			        $("div[id=css]").remove();
 			        $("div[id=php]").remove();
 			        $("div[id=javascript]").remove();
 			        $("div[id=jquery]").remove();
+
+			         /*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
+			        crearHtml('Html','html');
+			        crearHtml('Css','css');
+			        crearHtml('Jquery','jquery');
+			        $("#codigo").trigger('create');
+			        break;
+
+			    case 'bootstrap':
+			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
+			        $("div[id=html]").remove();
+			        $("div[id=css]").remove();
+			        $("div[id=php]").remove();
+			        $("div[id=javascript]").remove();
+			        $("div[id=jquery]").remove();
+
+			         /*Laravel*/
+			        $("div[id=modelo]").remove();
+			        $("div[id=vista]").remove();
+			        $("div[id=controlador]").remove();
+
 			        crearHtml('Html','html');
 			        crearHtml('Css','css');
 			        crearHtml('Jquery','jquery');

@@ -125,10 +125,10 @@ Home Recordatorios
 					                    <br class="">
 					                    <p>
 					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigoLaravel/'.$codigosRecordarlaravel[$i][$j]->id) }}">Leer</a>
-					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarlaravel[$i][$j]->id )}}')">Eliminar</a>
+					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoLaravel/'.$codigosRecordarlaravel[$i][$j]->id )}}')">Eliminar</a>
 					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $codigosRecordarlaravel[$i][$j]->nombre }}" data-content="{{ $codigosRecordarlaravel[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
 					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigoLaravel/'.$codigosRecordarlaravel[$i][$j]->id) }}">Leer</a>
-					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarlaravel[$i][$j]->id) }}')">Eliminar</a>
+					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoLaravel/'.$codigosRecordarlaravel[$i][$j]->id) }}')">Eliminar</a>
 					                    </p>
 					                </div>
 					            </div>

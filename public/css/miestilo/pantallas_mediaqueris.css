@@ -96,6 +96,7 @@
   }
 
   .papa{
+    display: flex;
     float: right;
     position: relative;
     margin: 0px;
@@ -218,6 +219,7 @@
   }
 
   .papa{
+    display: flex;
     float: right;
     position: relative;
     margin: 0px;
@@ -366,6 +368,7 @@
   }
 
   .papa{
+    display: flex;
     float: right;
     position: relative;
     margin: 0px;

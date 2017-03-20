@@ -23,6 +23,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 </head>
 <body  >
+	<header>
+		
+	
 	<div class="header">
   	  		<div class="wrap">
 				<div class="header_top">
@@ -51,34 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li  class="test">
 							<a href="#">Appliances</a>
 							<ul>
-								<li>
-									<a href="">Nuevo</a>
-									<ul>
-										<li><a href="/recordatorio">Recordatorio</a></li>
-										<li><a href="#">Pressure Cookers</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Storage</a>
-									<ul>
-										<li><a href="#">Bottles & Sippers</a></li>
-										<li><a href="#">Containers & Jars</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Cutlery & Tableware</a>
-									<ul>
-										<li><a href="#">Cutlery</a></li>
-										<li><a href="#">Condiment Sets</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Bar Accessories</a>
-									<ul>
-										<li><a href="#">Bottle Openers</a></li>
-										<li><a href="#">Flasks</a></li>
-									</ul>
-								</li>
+								<li><a href="/recordatorio" title="Recordatorio">Recordatorio</a></li>
 							</ul>
 						</li>
 						<!--Video-->
@@ -112,6 +88,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li>
 							<a href="#">Paginas</a>
 							<ul>
+								<li><a href="#">Faboritos</a></li>
+								<li><a href="#">Cuentas Creadas</a></li>
 								<li><a href="#">Programacion</a></li>
 								<li><a href="#">Trabajo</a></li>
 								<li><a href="#">Entretenimiento</a></li>
@@ -120,7 +98,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</li>
 						<!--Contactenos-->
 						<li>
-							<a href="contact.html">Contactanos</a>
+							<a href="contact">Programas</a>
+							<ul>
+								<li><a href="#">a</a></li>
+								<li><a href="#">Cuentas Creadas</a></li>
+								<li><a href="#">Programacion</a></li>
+								<li><a href="#">Trabajo</a></li>
+								<li><a href="#">Entretenimiento</a></li>
+							</ul>
+						</li>
+
+						<!--Contactenos-->
+						<li>
+							<a href="contact">Contactanos</a>
 						</li>
 					</ul>
 					 <span class="left-ribbon"> </span> 
@@ -139,6 +129,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	      </div>
    		</div>
    </div>
+   </header><!-- /header -->
    <!------------End Header ------------>
   <div class="main">
       <div class="content">

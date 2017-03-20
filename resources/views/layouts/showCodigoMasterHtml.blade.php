@@ -54,12 +54,14 @@ Recordatorio
 					<div class="col-md-12 col-xs-12">
 						<h1 class="titulo grande">{{ $datos[1][$i] }}</h1>
 						<br>
-
+						
+						<!--Si la variable es jquery  pasa a ser javascript por que el editor solo reconoce javascript-->
 						@if ($datos[1][$i] =='jquery')
-							  <?php $datos[1][$i]='javascript'; ?>
-						@endif
+							  <?php $tipo='javascript'; ?>
 
-						<pre class="language-{{ $datos[1][$i] }} line-numbers contenido-codigo"><code>{{ $codigo[0]->$datos[1][$i] }}</code>
+						@endif
+						<!--Aqui language no acepta lenguage-jquery solo lenguage-javascript por eso el cambio de variable  -->
+						<pre class="language-<?php if(isset($tipo)){ echo $tipo;}else{ echo $datos[1][$i]; } ?> line-numbers contenido-codigo"><code>{{ $codigo[0]->$datos[1][$i] }}</code>
 						</pre>
 					</div>
 				@endif

@@ -317,15 +317,22 @@ class RecordatorioController extends Controller
         }
 
         if($categoria[0]->nombre != 'laravel'){
-            $coleciones=DB::table('proyecto_master_htmls')->where('id_categoria', '=', $id)->delete();
-        }else{
-            $paginador=DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
+            //echo "es difetente de laravel";
+            $paginador=DB::table('proyecto_master_htmls')->select('nombre', 'descripsion','id', 'created_at')->where('id_categoria', '=', $id)->orderBy('id', 'desc')->paginate(6);
             $coleciones=$paginador->toArray();
             $coleciones=array_chunk($coleciones['data'], 3, false);
+            $recurzo="showCodigo";
+            
+        }else{
+            //echo "es laravel";
+            $paginador=DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6);
+            $coleciones=$paginador->toArray();
+            $coleciones=array_chunk($coleciones['data'], 3, false);
+            $recurzo="showCodigoLaravel";
         }
         //se obtiene array de los elementos con esta categoria
         //$colecion=
 
-        return view('layouts.categorias',['imagenes'=>$imagenes, 'categoria'=>$categoria, 'coleciones'=>$coleciones,'paginador'=>$paginador]);
+        return view('layouts.categorias',['imagenes'=>$imagenes, 'categoria'=>$categoria, 'coleciones'=>$coleciones,'recurzo'=>$recurzo, 'paginador'=>$paginador]);
     }
 }

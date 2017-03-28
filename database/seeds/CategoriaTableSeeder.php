@@ -14,7 +14,7 @@ class CategoriaTableSeeder extends Seeder
     	$array = array(
 	    "html", "laravel", "htmlycss",
 	    "apphtml", "javascript", "php",
-	    "jquery"
+	    "jquery","bootstrap"
 		);
 
 

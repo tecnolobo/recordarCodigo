@@ -12,13 +12,13 @@ class ImagenTableSeeder extends Seeder
     public function run()
     {
         $array = array(
-	    "html5", "css", "javascript",
-	    "bootstrap", "jquery", "php",
-	    "laravel", "mysql"
+	    "html5", "laravel", "css",
+	    "mysql", "javascript", "php",
+	    "jquery", "bootstrap"
 		);
 
 
-		for($i=0; $i<8; $i++){
+		for($i=0; $i<sizeof($array); $i++){
 
 			DB::table('imagens')->insert([
 			'nombre' => $array[$i],

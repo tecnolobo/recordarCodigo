@@ -41,8 +41,15 @@ Nuevo recordatorio
 				<div class="row">
 					<div class="col-md-12">
 
-						<!--Laravel codigos-->
+						<!--Categoria codigos-->
 					    <div role="tabpanel" class="tab-pane" id="laravel">
+
+					    @if (empty($coleciones[0]))
+
+					    	<div class="alert alert-info" role="alert">Ubs Parece que no hay <b>Ningun Registro</b></div>
+
+					    @else <!--Si existe registro de esta categoria-->
+					    	
 					    	@for ($i=0; $i< count($coleciones); $i++)
 
 					        	<div class="row">
@@ -59,7 +66,7 @@ Nuevo recordatorio
 							                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigoLaravel/'.$coleciones[$i][$j]->id) }}">Leer</a>
 							                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoLaravel/'.$coleciones[$i][$j]->id )}}')">Eliminar</a>
 							                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $coleciones[$i][$j]->nombre }}" data-content="{{ $coleciones[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
-							                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigoLaravel/'.$coleciones[$i][$j]->id) }}">Leer</a>
+							                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset($recurzo.'/'.$coleciones[$i][$j]->id) }}">Leer</a>
 							                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoLaravel/'.$coleciones[$i][$j]->id) }}')">Eliminar</a>
 							                    </p>
 							                </div>
@@ -80,8 +87,10 @@ Nuevo recordatorio
 							<!--/Paginacion-->
 
 
+						@endif <!-- /Si existe registro de esta categoria-->
+
 					    </div>
-					    <!--Laravel codigos-->
+					    <!-- /Categoria codigos-->
 
 					</div>
 				</div>

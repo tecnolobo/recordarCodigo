@@ -172,19 +172,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </div>
     </div>
    <div class="footer">
-   	  <div class="wrap">	
-			 <div class="copy_right">
-				<p>Copy rights (c). All rights Reseverd | Template by  <a href="http://w3layouts.com" target="_blank">W3Layouts</a> </p>
-		   </div>	
-		   <div class="footer-nav">
-		   	<ul>
-		   		<li><a href="#">Terms of Use</a> : </li>
-		   		<li><a href="#">Privacy Policy</a> : </li>
-		   		<li><a href="contact.html">Contact Us</a> : </li>
-		   		<li><a href="#">Sitemap</a></li>
-		   	</ul>
-		   </div>		
-        </div>
+   	  	<div class="container-fluid">
+   	  		<div class="row">
+   	  			<div class="col-md-6 col-sm-6 col-xs-6">
+   	  				<span>
+   	  					<p>Copy rights (c). All rights Reseverd | Template by  <a href="http://w3layouts.com" target="_blank">W3Layouts</a> </p>
+   	  				</span>
+   	  			</div>
+   	  			<div class="col-md-6 col-sm-6 col-xs-6">
+				   	<div class="social">
+		                <a href="http://www.twitter.com/cesar_cz" title="Sígueme en Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+		                <a href="https://www.facebook.com/cesar.cz" title="Sígueme en Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+		                <a href="https://www.youtube.com/user/peligrocesar" title="Sígueme en Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+		            </div>
+   	  			</div>
+   	  		</div>
+   	  	</div>
+
+
+
+		   
+
     </div>
     
     <a href="#" id="toTop"> </a>

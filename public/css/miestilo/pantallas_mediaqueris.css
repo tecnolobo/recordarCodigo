@@ -301,6 +301,24 @@
     float: left;
     border-radius: 0px 5px 0px 0px;
   }
+
+  .titulo{
+    color: white;
+  }
+
+  /*footer estilos*/
+  .footer .row .col-md-6 span{
+    text-align: -webkit-center;
+  }
+
+  .footer .row .col-md-6 .social{
+    display: block;
+    margin: 0px;
+    width: 100%;
+    text-align: -webkit-center;
+  }
+
+  /*/footer estilos*/
   
 
 
@@ -308,7 +326,7 @@
   
 /* Para 320px */  
 @media only screen and (max-width: 340px) and (min-width: 5px)  {  
-  /*body{background-color: orange}*/
+  body{background-color: orange}
   .popover{
     left: 90.0469px !important;
   }
@@ -404,7 +422,20 @@
     border-radius: 0px 5px 0px 0px;
   }*/
 
-  
+   /*footer estilos*/
+  .footer .row .col-md-6 span{
+    text-align: -webkit-center;
+  }
+
+  .footer .row .col-md-6 .social{
+    display: block;
+    margin: 0px;
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: -webkit-center;
+  }
+
+  /*/footer estilos*/
 
   
 

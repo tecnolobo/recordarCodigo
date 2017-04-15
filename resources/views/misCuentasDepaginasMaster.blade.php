@@ -118,8 +118,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   		    </div>
   		     <div class="header_bottom">
 			   <div class="slider-text">
-			   	<h2>No recuerdas tu codigo? <br/>Se te olvido como se hace?</h2>
-			   	<p>Aqui podras guardar lo que necesiten<br/> Y cuando sea necesesario</p>
+			   	<h2>@yield('titulo', 'sin titulo')</h2>
+			   	<p>@yield('descripsion','sin descipsion')</p>
 			   	<a href="#">Creado por julian gomez</a>
 	  	      </div>
 	  	      <div class="slider-img">
@@ -144,7 +144,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			                <div class="ocarousel_window">
 
 							@foreach ($imagenes as $imagen)
-								<a href="/categoria/{{ $imagen->id }}" title="{{ $imagen->nombre }}"> <img src="{{ URL::asset($imagen->url) }}" alt="" /><p>{{ $imagen->nombre }}</p></a>
+								<a href="/categoria/{{ $imagen->id }}" title="{{ $imagen->nombre}}"> <img src="{{URL::asset($imagen->url)}}" alt="" /><p>{{$imagen->nombre }}</p></a>
 							@endforeach
 
 			                </div>
@@ -171,7 +171,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          </div>
       </div>
     </div>
-   <div class="footer">
+   <div class="footer margin-top-30px">
    	  	<div class="container-fluid">
    	  		<div class="row">
    	  			<div class="col-md-6 col-sm-6 col-xs-6">

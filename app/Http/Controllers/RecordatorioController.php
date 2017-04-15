@@ -66,6 +66,7 @@ class RecordatorioController extends Controller
     public function store(Request $request)
     {
         
+        /*nombre del campo en el formulario => requeried*/
         $reglas=array ('nombre'=>'required', 'tipo'=>'required|numeric');
 
 
@@ -130,28 +131,7 @@ class RecordatorioController extends Controller
 
         }
 
-        /*$id_categoria=$request->tipo;
-        $id_cat=explode("_",$id_categoria);
-        $id_cat=$id_cat[1];
-        if( empty($request->input('nombre'))){
-
-            echo "no hay nada";
-            $request->session()->flash('estado', 'Porfavor no deje el nombre Vacio');
-            return redirect('/recordatorio');
-
-        }else{
-
-            echo "si hay <br>";
-            echo "<br>";
-            print_r($request->all());
-        }*/
-
-
-       
-
-        
-       // $pmHtml::create(['nombre' => $request->nombre , 'id_categoria'=>$id_cat]);
-        //print_r($request->all());
+    
     }
 
     /**

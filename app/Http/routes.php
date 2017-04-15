@@ -24,3 +24,10 @@ Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")-
 Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+');
 Route::get('recordatorio',"RecordatorioController@create");
 Route::post('guardarRecordatorio',"RecordatorioController@store");
+
+
+/*mis Cuentas de paginas*/
+Route::get('/cuentasCreadas',"MisCuentasDePaginasController@index");
+Route::get('nuevaCuentaDePagina',"MisCuentasDePaginasController@create");
+Route::post('nuevaCuentaDePagina',"MisCuentasDePaginasController@store");
+

@@ -6,6 +6,21 @@ b{
 	font-weight: bold !important;
 }
 
+h1{
+	font-size: 30px;
+	font-weight: bold;
+}
+
+h2{
+	/*font-size: 15px;*/
+	font-weight: bold;
+}
+
+h3{
+	/*font-size: 10px;*/
+	font-weight: bold;
+}
+
 .navigation .nav > li > a:hover, .navigation .nav > li > a:focus {
 	    background-color: #4880FF;
 }
@@ -276,6 +291,144 @@ time{
 .pagination > li >a{
 	color: #1c1c1d !important;
 }
+
+/*Mis cuentas de Pagina*/
+
+.cuentasDePagina .form-group label{
+	margin-bottom: 10px;
+	font-size: 17px;
+}
+
+.col-md-7 .form-group label {
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.col-md-7 .form-group textarea {
+   	display: block;
+    height:14.5em;
+}
+
+select[name="categoria"] option:first{
+	color: gray;
+}
+
+
+button[type="submit"]{
+	background-color: #AE59B9;
+	border-color: #A84FB5;
+}
+
+button[type="submit"]:hover{
+	background-color: #A84FB5 !important;
+	border-color: #A84FB5;
+}
+
+.flex{
+	    display: flex;
+	    flex-direction: row;
+	    /* justify-content: center; */
+	    align-items: center;
+}
+
+.flex a:nth-child(1){
+	margin-right: 20px;
+}
+
+
+	/*resientes*/
+
+	ul.resientes h3{
+		font-size: 19px;
+		font-weight:normal;
+		padding: 9px 15px;
+		display: block;
+		margin: 0px;
+		background-color: #0042DD;
+		color: white;
+		margin-bottom: 10px;
+		position: relative;
+		overflow: hidden;
+		padding-left: 30px;
+
+	}
+
+	ul.resientes h3 span{
+		 position: absolute;
+	     right: -11px;
+	     top: -24px;
+	     font-size: 91px;
+	     color: #EBEBEB;
+	}
+
+	.resientes li {
+		border-bottom: solid 1px #D6D6D6;
+	}
+
+	.resientes li a{
+		color: #03235E;
+		display: block;
+		padding: 10px 5px;
+		text-decoration: none;
+
+
+	}
+
+	.resientes li a span{
+		color: #D6D6D6;
+		float: left;   
+		margin-right: 9px;
+		
+	}
+
+
+	.resientes li a:hover{
+		background-color: rgba(220, 220, 220, 0.29);
+
+	}
+
+	/*/resientes*/
+
+
+	/**tems_info_pagina*/
+	.item_info_pagina{
+		padding:10px 16px;
+		position: relative;
+		max-height: 150px;
+		margin-bottom: 15px;
+		border-bottom: solid 1px grey;
+	}
+
+	.item_info_pagina p:nth-child(odd){
+		font-size: 18px;
+	}
+
+	.item_info_pagina p:nth-child(even){
+		font-size: 13px;
+		color: rgba(199, 193, 193, 0.69);
+	}
+	
+	.item_info_pagina time{
+		top: 7px;
+	    right: 9px;
+	    position: absolute;
+	}
+
+	.item_info_pagina h1{
+		font-size: 21px;
+		font-weight: normal;
+	}
+
+	.item_info_pagina .botones{
+		margin-top: 8px;
+	}
+
+
+	/* /items_info_pagina*/
+
+
+/*/Mis cuentas de Pagina*/
+
 
 
 

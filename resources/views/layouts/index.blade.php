@@ -17,7 +17,7 @@ Home Recordatorios
 
 
 @section('contenidoAbajoizquierda')
-	iiiiii
+	zzz
 @stop
 
 @section('contenidoAbajoderecha')

@@ -17,6 +17,5 @@ class ProyectoMasterHtml extends Model
         'updated_at','id_categoria','descripsion','created_at',
     ];//
 
-    protected $dates = ['created_at', 'updated_at', 'date'];
 
 }

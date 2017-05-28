@@ -17,6 +17,10 @@ function eliminarRecordatorio(routeId){
 	}
 }
 
+
+
+
+
 $(document).ready(function() {	
 
 
@@ -244,7 +248,7 @@ $(document).ready(function() {
 		$(this).find('.eliminar-textarea').on('click',function(){
 			var n = '#'+ $(this).attr('name');
 			$(n).remove();
-			console.log(n);
+			//console.log(n);
 		})
 
 		
@@ -323,6 +327,7 @@ $(document).ready(function() {
 	
 
 
+
 	
 
-});				
+});// fin documente.ready			

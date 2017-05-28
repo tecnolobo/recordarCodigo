@@ -17,7 +17,7 @@ Home Recordatorios
 
 
 @section('contenidoAbajoizquierda')
-	zzz
+	iiiiii
 @stop
 
 @section('contenidoAbajoderecha')
@@ -69,29 +69,31 @@ Home Recordatorios
 				<!--Codgiso html css java etc-->
 
 			    <div role="tabpanel" class="tab-pane active" id="home">
-
+					<!--imprimiendo array-->
+					
+					<!--! imprimiendo array-->    	
 			    	@for ($i=0; $i< count($codigosRecordarhtml); $i++)
-
 			        	<div class="row">
 
 					        @for ($j = 0; $j <count($codigosRecordarhtml[$i]) ; $j++)
-					        	<div class="col-sm-4 col-md-4 col-xs-12">
+
+								<div class="col-sm-4 col-md-4 col-xs-12">
 					            <div class="thumbnail">
 					                <div class="caption">
-					                    <h3 title="{{ $codigosRecordarhtml[$i][$j]->nombre }}">{{ $codigosRecordarhtml[$i][$j]->nombre }}</h3>
-					                    <time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarlaravel[$i][$j]->created_at)) }}</time>
-					                    <p class="">{{ $codigosRecordarhtml[$i][$j]->descripsion }}</p>
+					                    <h3 title="{{$codigosRecordarhtml[$i][$j]->nombre}}">{{$codigosRecordarhtml[$i][$j]->nombre}}</h3>
+										<time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarhtml[$i][$j]->created_at) )}}</time>					                    <p class="">{{$codigosRecordarhtml[$i][$j]->descripsion}}</p>
 					                    <br class="">
 					                    <p>
-					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
-					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id )}}')">Eliminar</a>
-					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $codigosRecordarhtml[$i][$j]->nombre }}" data-content="{{ $codigosRecordarhtml[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
-					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
-					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id) }}','{{ $codigosRecordarhtml[$i][$j]->id }}')">Eliminar</a>
+					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id)}}">Leer</a>
+					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id )}}')">Eliminar</a>
+					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{$codigosRecordarhtml[$i][$j]->nombre}}" data-content="{{$codigosRecordarhtml[$i][$j]->descripsion}}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
+					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id)}}">Leer</a>
+					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id)}}','{{$codigosRecordarhtml[$i][$j]->id}}')">Eliminar</a>
 					                    </p>
 					                </div>
 					            </div>
 					        </div>
+
 					        @endfor
 
 				        </div>

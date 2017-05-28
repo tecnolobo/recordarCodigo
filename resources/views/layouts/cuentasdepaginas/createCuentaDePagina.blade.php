@@ -40,10 +40,10 @@
 <br>	
 <ul class="resientes">
 	<h3><span class="fa fa-caret-left"></span>Categorias</h3>	
-	@foreach ($resientes as $resiente)
+	@foreach ($catCuentasDePag as $catCuentaDepag)
 		<li>
-			<a title="{{ $resiente->url }}" href="{{ $resiente->url }}" target="blank">
-			<span class="fa fa-caret-right"></span>{{ $resiente->nombre_pagina }}
+			<a title="{{ $catCuentaDepag->nombre }}" href="{{ $catCuentaDepag->id }}" target="blank">
+			<span class="fa fa-caret-right"></span>{{ $catCuentaDepag->nombre }}
 			</a>
 		</li>
 	@endforeach
@@ -196,9 +196,7 @@
 		<!--/Formulario-->
 
 	</div>
-
-
-
+	
 @stop
 
 

@@ -27,7 +27,10 @@ Route::post('guardarRecordatorio',"RecordatorioController@store");
 
 
 /*mis Cuentas de paginas*/
-Route::get('/cuentasCreadas',"MisCuentasDePaginasController@index");
-Route::get('nuevaCuentaDePagina',"MisCuentasDePaginasController@create");
-Route::post('nuevaCuentaDePagina',"MisCuentasDePaginasController@store");
+Route::get('/cuentasCreadas',"CuentasDePagina\MisCuentasDePaginasController@index");
+Route::get('nuevaCuentaDePagina',"CuentasDePagina\MisCuentasDePaginasController@create");
+Route::post('nuevaCuentaDePagina',"CuentasDePagina\MisCuentasDePaginasController@store");
+Route::get('/destroyCuentaCreada/{id}',"CuentasDePagina\MisCuentasDePaginasController@destroy")->where('id','[0-9]+');
+Route::post('ajaxNewCategoria',"CuentasDePagina\CategoriaCuentaDePaginaController@store");
+Route::post('destroyCateCuentaDePag',"CuentasDePagina\CategoriaCuentaDePaginaController@destroy");
 

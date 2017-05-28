@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--nuevosCss-->
 @yield('nuevoCss')
 <!--/nuevosCss-->
-
+<script type="text/javascript">//</script>
 </head>
 <body  >
 	<header>
@@ -195,7 +195,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     </div>
     
-    <a href="#" id="toTop"> </a>
+    <!--boton flotante para ir hacia arriba-->
+    <a href="#" id="toTop"></a>
 
     <!--Scripts-->
     <script type="text/javascript" src="{{ URL::asset('plugins/jquery/jquery-2.x.js') }}"></script> 

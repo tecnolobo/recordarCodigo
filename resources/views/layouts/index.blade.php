@@ -79,7 +79,7 @@ Home Recordatorios
 					            <div class="thumbnail">
 					                <div class="caption">
 					                    <h3 title="{{ $codigosRecordarhtml[$i][$j]->nombre }}">{{ $codigosRecordarhtml[$i][$j]->nombre }}</h3>
-					                    <time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarlaravel[$i][$j]->created_at)) }}</time>
+					                    <time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarhtml[$i][$j]->created_at)) }}</time>
 					                    <p class="">{{ $codigosRecordarhtml[$i][$j]->descripsion }}</p>
 					                    <br class="">
 					                    <p>

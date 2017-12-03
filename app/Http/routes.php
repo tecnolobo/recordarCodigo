@@ -24,3 +24,4 @@ Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")-
 Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+');
 Route::get('recordatorio',"RecordatorioController@create");
 Route::post('guardarRecordatorio',"RecordatorioController@store");
+Route::get('/cache', function () {$exitCode = Artisan::call('cache:clear');});

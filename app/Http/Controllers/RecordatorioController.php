@@ -68,12 +68,20 @@ class RecordatorioController extends Controller
     public function store(Request $request)
     {
         
-        $reglas=array ('nombre'=>'required', 'tipo'=>'required|numeric');
+        $mensajes=array(
+            'nombre.required' => 'El campo nombre es Obligatorio',
+            'tipo.required' => 'El campo tipo es Obligatorio',
+            'tipo.numeric' => 'El campo solo acepta numeros',
+            'g-recaptcha-response.required' => 'Por favor compruebe que no eres un robot',
+            'g-recaptcha-response.recaptcha' => 'Intentelo nuevamente, No existio coincidencias',
+        );
+
+        $reglas=array ('nombre'=>'required', 'tipo'=>'required|numeric', 'g-recaptcha-response' => 'required|recaptcha');
 
 
         /*primer parametro. datos que envia formulario, segundo parametro las reglas que se deben cumplir*/
 
-        $validator=Validator::make($request->all(),$reglas); 
+        $validator=Validator::make($request->all(),$reglas,$mensajes); 
 
 
         //si la validacion falla

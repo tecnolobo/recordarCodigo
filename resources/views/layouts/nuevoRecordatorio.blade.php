@@ -108,6 +108,17 @@ Nuevo recordatorio
 				<div class="col-md-12 margin-top-30px">
 					<textarea class="form-control  input-lg height-200" name="descripsion" placeholder="Descripsion"></textarea>
 				</div>
+				
+				<div class="col-md-12 text-center">
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4 margin-top-30px">
+							{!! Recaptcha::render([ 'lang'  =>  'es' ]) !!}
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+
 				<div class="col-md-12 text-center">
 					<div class="row">
 						<div class="col-md-4"></div>

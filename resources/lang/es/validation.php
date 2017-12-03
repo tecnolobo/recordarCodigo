@@ -14,7 +14,7 @@ return [
     */
 
    
-
+    'recaptcha' => 'Porfavor confirme que no es un robot',
     'accepted'             => ':attribute debe ser aceptado.',
     'active_url'           => ':attribute no es una URL válida.',
     'after'                => ':attribute debe ser una fecha posterior a :date.',

@@ -1,6 +1,6 @@
 
 /* Para 960px */  
-@media only screen and (max-width: 1360px) and (min-width: 981px) {  
+@media only screen and (max-width: 1370px) and (min-width: 981px) {  
   body{background-color: yellow}
 
   .header_top {

@@ -304,10 +304,38 @@ class RecordatorioController extends Controller
 
 
 
-    public function categoria($id)
-    {
+    public function categoria($id,Request $request)
+    {   
+
+        $imagenes=DB::table('imagens')->get();
+
+        $paginadorhtml = DB::table('proyecto_master_htmls')->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')->orderBy('id', 'desc')->where('id_categoria',$id)->paginate(6);
+        
+        $codigosRecordarhtml=$paginadorhtml->toArray();
+        
+        $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
+        
+
+        /*verificamos sino existen elementos*/
+        if(!empty($codigosRecordarhtml)){
+            
+            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml  ]);
+           
+        }else{
+
+            //Si no existen resultados redirigimos   
+            $request->session()->flash('mensaje', 'Lo sentimos pero no se an encontrado elementos para esta categoria');
+            return redirect('/');
+        
+        }
+
+    
+
+
+        /*$elementos=DB::table('proyecto_master_htmls')->where('id_categoria',$id)->get();
+        $imagenes=DB::table('imagens')->get();
         //echo $id;
-        /*$imagenes=DB::table('imagens')->get();
-        return view('layouts.categorias',['imaganes'=>$imagenes]);*/
+        return view('layouts.categorias',['imagenes'=>$imagenes]);*/
+        
     }
 }

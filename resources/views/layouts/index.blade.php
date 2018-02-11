@@ -27,13 +27,21 @@ Home Recordatorios
 <!--Contenido-->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
-            <a class="btn btn-success" href="{{ URL::asset('/recordatorio') }}">
-                Agregar nuevo
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-12"></div>
-        <div class="col-md-4"></div>
+        	
+		<div class="input-group">
+	      <span class="input-group-btn">
+	      	<button class="btn btn-default" type="button" onclick="window.location.href='{{ URL::asset('/recordatorio') }}'" >
+	          <i class="fa fa-plus"></i> &nbsp
+	        </button>  
+	      </span>
+	      <input type="text" class="form-control" placeholder="Search for...">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button">Go!</button>  
+	      </span>
+
+	    </div><!-- /input-group -->
+	
+
     </div>
 
     <div class="row">

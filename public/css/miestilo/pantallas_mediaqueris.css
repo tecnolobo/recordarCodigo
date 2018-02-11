@@ -1,7 +1,7 @@
 
 /* Para 960px */  
 @media only screen and (max-width: 1360px) and (min-width: 981px) {  
-  body{background-color: yellow}
+  /*body{background-color: yellow}*/
 
   .header_top {
     /* padding-bottom: 25px; */
@@ -45,7 +45,7 @@
 
 /* Para 960px */  
 @media only screen and (max-width: 980px) and (min-width: 821px) {  
-  body{background-color: blue}
+  /*body{background-color: blue}*/
 
    .hidden-portatil{
     display: none;
@@ -85,7 +85,7 @@
 
 /* Para tablets */  
 @media only screen and (max-width: 767px) and (min-width: 619px) {  
-  body{background-color: pink}
+  /*body{background-color: pink}*/
 
   .hidden-tbl{
     display: none;
@@ -116,7 +116,7 @@
   
 /* Para 800px */  
 @media only screen and (max-width: 820px) and (min-width: 768px) {  
-  body{background-color: red}
+  /*body{background-color: red}*/
 
   .hidden-netbok{
     display: none;
@@ -164,9 +164,7 @@
 /* Para 600px */  
 @media only screen and (max-width: 620px) and (min-width: 501px) {  
   
-  body{
-  	background-color: purple;
-  }
+  /*body{background-color: purple;}*/
   
   .thumbnail>.caption{
   	cursor: pointer;
@@ -240,7 +238,7 @@
 /* Para 480px */  
 @media only screen and (max-width: 500px) and (min-width: 341px) {  
   
-  body{background-color: gray;}
+  /*body{background-color: gray;}*/
   
   .col-xs-6 {
     width: 100% !important;

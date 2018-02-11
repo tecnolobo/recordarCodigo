@@ -1,11 +1,18 @@
 @extends('indexMaster')
 
-@section('title')
-Nuevo recordatorio
+@section('palabrasclave')
+<meta name="description" content="Crear recordatorios functiones o fragmentos de codigos para poder buscarlos e utilizarlos mas rapido en tus proyectos de Programacion" /> 
+<meta name="keywords" content="codigo, recordar, fragmentos, funciones" /> 
 @stop
 
+@section('title')
+Home Recordatorios
+@stop
+
+
 @section('nuevoCss')
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('plugins/css/font-awesome/css/font-awesome.css') }}">	
+<link href="{{ URL::asset('plugins/css/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/miestilo/pantallas_mediaqueris.css') }}">
 @stop
 
 
@@ -14,178 +21,137 @@ Nuevo recordatorio
 @stop
 
 @section('contenidoAbajoderecha')
-	<div class="container-fluid margin-bottom-20px">
+	<h3 class="h3x">
+	    Lo Actualmente Reciente
+	</h3>
+<div class="row">
+	
+	
+</div>
+<!--Contenido-->
+<div class="container-fluid">
+    <div class="row">
+        	
+		<div class="input-group">
+	      <span class="input-group-btn">
+	      	<button class="btn btn-default" type="button" onclick="window.location.href='{{ URL::asset('/recordatorio') }}'" >
+	          <i class="fa fa-plus"></i> &nbsp
+	        </button>  
+	      </span>
+	      <input type="text" class="form-control" placeholder="Search for...">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button">Go!</button>  
+	      </span>
 
-		<div class="row">
-			<div class="col-md-12">&nbsp;</div>
-		</div>
-		<div class="row">
-			<div class="col-md-1">
-				<i class="fa fa-reply fa-3x" aria-hidden="true"></i>
-			</div>
-			<div class="col-md-6 col-sm-3">
-				<h2 class="margin-top-15px">Nuevo Recordatorio </h2>
-			</div>
+	    </div><!-- /input-group -->
+	
+
+    </div>
+	
+
+    <div class="row">
+    	<div class="container-fluid">
+	        <div class="row margin-bottom-20px">
+	        	<!--Mensajes de session-->
+				@if(Session::has('mensaje'))
+					<br>
+					<div class=" col-md-12 alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						{{Session::get('mensaje')}}
+					</div>
+				@endif
+				<!--/Mensajes de session-->
+	        </div>
+        </div>
+    </div>
+
+    <!--Lo mas reciente-->
+    <div class="row reciente">
+    	<div class="row">
 			
-		</div>
-		
-		<div class="row">
-			<div class="col-md-12 margin-top-15px"></div>
-		</div>
+			<div class="col-md-12">
 
-		<div class="row">
-			<!--Inicio formulario-->
-			<form name="descipsion" method="post" action="{{ url('guardarRecordatorio') }}">
-				
-				{!! csrf_field() !!}
+			  <!-- Nav tabs -->
+			  <ul id="myTabs" class="nav nav-tabs pestanas" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">Nombre CAtegoria</a></li>
+			  </ul><!-- /Nav tabs -->
+			
+			</div>	
+	  
 
-				<div class="col-md-6 col-sm-6">
-					<input name="nombre" type="text" class="form-control  input-lg"  placeholder="Nombre">
-				</div>
-				<div class="visible-xs margin-bottom-15px"></div>
-				<div class="col-md-4 col-sm-4">
-					<select name="tipo" id="tipo" class="form-control  input-lg" name="tipo" >
-						<option value="0">Selecione Tipo</option>
-						<option value="html">Texto Html</option>
-						<option value="laravel">Laravel</option>
-						<option value="htmlycss">Html y Css</option>
-						<option value="apphtml">App Html</option>
-						<option value="javascript">Javascript</option>
-						<option value="php">Php</option>
-						<option value="jquery">Jquery</option>
-					</select>
-				</div>
+			<!-- Tab panes -->
+			<div class="tab-content col-md-12">
 
-				<div class="col-md-12 margin-top-30px">
-					<textarea class="form-control  input-lg height-200" name="descripsion" placeholder="Descripsion"></textarea>
-				</div>
-				<div class="col-md-12 text-center">
+				<br>
+				<br>
+
+				<!--Codgiso html css java etc-->
+
+				<div role="tabpanel" class="tab-pane active" id="home">
+
+					@for ($i=0; $i< count($codigosRecordarhtml); $i++)
+
+				    	<div class="row">
+
+					        @for ($j = 0; $j <count($codigosRecordarhtml[$i]) ; $j++)
+					        	<div class="col-sm-4 col-md-4 col-xs-12">
+					            <div class="thumbnail">
+					                <div class="caption">
+					                    <h3 title="{{ $codigosRecordarhtml[$i][$j]->nombre }}">{{ $codigosRecordarhtml[$i][$j]->nombre }}</h3>
+					                    <time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarhtml[$i][$j]->created_at)) }}</time>
+					                    <p class="">{{ $codigosRecordarhtml[$i][$j]->descripsion }}</p>
+					                    <br class="">
+					                    <p>
+					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
+					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id )}}')">Eliminar</a>
+					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $codigosRecordarhtml[$i][$j]->nombre }}" data-content="{{ $codigosRecordarhtml[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
+					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
+					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id) }}','{{ $codigosRecordarhtml[$i][$j]->id }}')">Eliminar</a>
+					                    </p>
+					                </div>
+					            </div>
+					        </div>
+					        @endfor
+
+				        </div>
+
+				    @endfor
+					
+					<!--Paginacion-->
 					<div class="row">
-						<div class="col-md-4"></div>
-						<div class="col-md-4 margin-top-30px">
-							<button class="btn btn-info btn-lg" type="submit">Guardar codigo</button>
+						<div class="col-md-12 text-center">
+							<div class="margin-top-50px paghtml">{!! $paginadorhtml->render() !!}</div>
 						</div>
-						<div class="col-md-4"></div>
 					</div>
-				</div>
-				<div class="col-md-12 punteado margin-top-40px margin-bottom-10px visible-md visible-lg">
+					<!--/Paginacion-->
 					
 				</div>
-				
-				<!--Codigo-->
-				<div class="col-md-12" id="codigo">
-
-					<div id="html" class="row margin-top-20px margin-bottom-50px codeitem">
-						<div class="col-md-1"></div>
-						<!--Textarea Html-->
-						<div  class="col-md-10">
-							<div name="html" class="btn btn-info eliminar-textarea ">x</div>
-							<div name="html" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Html</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="html"></textarea>
-						</div>
-						<!--/Textarea Html-->
-
-						<div class="col-md-1"></div>
-					</div>
-
-					<!--Css-->
-					<div id="css" class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>
-						<!--Textarea Css-->
-						<div  class="col-md-10 ">
-						<div name="css" class="btn btn-info eliminar-textarea ">x</div>
-						<div name="css" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Css</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="css"></textarea>
-						</div>
-						<!--/Textarea Css-->
-						<div class="col-md-1"></div>								
-					</div>
-
-					<!--Php-->
-					<div id="php" class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>	
-						<!--Textarea Php-->
-						<div  class="col-md-10 ">
-							<div name="php" class="btn btn-info eliminar-textarea ">x</div>
-							<div name="php" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Php</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="php"></textarea>
-						</div>
-						<!--/Textarea Php-->
-						<div class="col-md-1"></div>		
-					</div>
-
-					<!--Javascript-->
-					<div id="javascript"  class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>
-						<!--Textarea Javascript-->
-						<div class="col-md-10 ">
-							<div name="javascript"  class="btn btn-info eliminar-textarea ">x</div>
-							<div name="javascript" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">JavaScript</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="javascript"></textarea>
-						</div>
-						<!--/Textarea Javascript-->
-						<div class="col-md-1"></div>		
-					</div>
-					
-					<!--Jquery-->
-					<div id="jquery" class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>	
-						<!--Textarea Jquery-->
-						<div  class="col-md-10 ">
-							<div name="jquery" class="btn btn-info eliminar-textarea">x</div>
-							<div name="jquery" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Jquery</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="jquery"></textarea>
-						</div>
-						<!--/Textarea Jquery-->
-						<div class="col-md-1"></div>	
-					</div>
+				<!--/Codigos html css java etc-->
 
 
-				</div>
-				<!--/codigo-->
 
-			<!--/Fin formulario-->
-			</form>
-		</div>
+			</div><!--/tabs panes-->
 
-	</div><!--/container fluid-->
+    	</div>
+
+    </div>
+   
+
+</div>
+<div class="container-fluid">
+	
+</div>
 @stop
 
 
 @section('nuevojs')
-<script type="text/javascript">
-		$(document).ready(function() {			
+    <script type="text/javascript">
+        $(document).ready(function() {			
 			$().UItoTop({ easingType: 'easeOutQuart' });
-			
+			$('.papa').popover();
 		});
-
-</script>
-
-<script type="text/javascript" src="{{ URL::asset('js/misjs/funciones.js') }}"></script>
-
-@stop
+    </script>
+    <script src="{{ URL::asset('js/misjs/funciones.js') }}" type="text/javascript">
+    </script>
+    @stop
+</link>

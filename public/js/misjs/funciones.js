@@ -17,6 +17,21 @@ function eliminarRecordatorio(routeId){
 	}
 }
 
+function enviarFormuarioConEnter(event,formulario=null){
+	// PARA VER QUE TECLA ESTA PRESIONADO 
+
+	//VALIDO LA TECLA PRESIONADA
+	if(event.keyCode == 13){ //13 = ENTER
+		alert('Hola'); //AQUI PUEDES PONER EL ENVIO DEL FORMULARIO : document.formulario.submit; 
+		
+		if(!formulario==null){
+			//enviamos el fomrulario
+			$(formulario).submit();
+		}
+	}
+
+}
+
 $(document).ready(function() {	
 
 
@@ -279,6 +294,8 @@ $(document).ready(function() {
 
 	});
 	
+
+
 
 
 	

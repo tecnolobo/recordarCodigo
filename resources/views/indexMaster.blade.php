@@ -27,13 +27,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   	  		<div class="wrap">
 				<div class="header_top">
 					<div class="titulo-pagina">
-						<h2>TECNOLOBO</h2>
+						<h2 onclick="javascript:window.location.href='{{ URL::asset('/') }}'">
+
+								TECNOLOBO
+							
+						</h2>
+
 					</div>
 						<div class="header_top_right">
 							  <div class="search_box">
 							  	<span>Buscar</span>
 					     		<form>
-					     			<input type="text" value=""><input type="submit" value="">
+					     			<input type="text" value="" onblur="alert('assa');"><input type="submit" value="">
 					     		</form>
 					     		<div class="clear"></div>
 					     	</div>

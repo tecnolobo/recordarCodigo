@@ -27,19 +27,25 @@ Home Recordatorios
 <!--Contenido-->
 <div class="container-fluid">
     <div class="row">
-        	
-		<div class="input-group">
-	      <span class="input-group-btn">
-	      	<button class="btn btn-default" type="button" onclick="window.location.href='{{ URL::asset('/recordatorio') }}'" >
-	          <i class="fa fa-plus"></i> &nbsp
-	        </button>  
-	      </span>
-	      <input type="text" class="form-control" placeholder="Search for...">
-	      <span class="input-group-btn">
-	        <button class="btn btn-default" type="button">Go!</button>  
-	      </span>
+       	
+       	<!--fomrulario-->
+		<form id="miformulario" action="{{ url('buscar') }}" method="post">
+			
+			{!! csrf_field() !!}
+			
+			<div class="input-group">	
+		      <span class="input-group-btn">
+		      	<button class="btn btn-default" type="button" onclick="window.location.href='{{ URL::asset('/recordatorio') }}'" >
+		          <i class="fa fa-plus"></i> &nbsp
+		        </button>  
+		      </span>
+		      <input type="text" name="buscar" onkeydown="javascript:enviarFormuarioConEnter(event,'#miformulario')" class="form-control" placeholder="Search for...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Go!</button>  
+		      </span>
+		    </div><!-- /input-group -->
 
-	    </div><!-- /input-group -->
+		</form><!--fin fomrulario-->
 	
 
     </div>

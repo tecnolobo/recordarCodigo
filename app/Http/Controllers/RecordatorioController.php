@@ -329,13 +329,38 @@ class RecordatorioController extends Controller
         
         }
 
-    
+    }
 
+    public function buscar(Request $request)
+    {   
 
-        /*$elementos=DB::table('proyecto_master_htmls')->where('id_categoria',$id)->get();
+        $buscar = $request->buscar;
+
         $imagenes=DB::table('imagens')->get();
-        //echo $id;
-        return view('layouts.categorias',['imagenes'=>$imagenes]);*/
+
+        $paginadorhtml = DB::table('proyecto_master_htmls')
+        ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')
+        ->where('nombre', 'like', '%'.$buscar.'%')
+        ->orderBy('id', 'desc')
+        ->paginate(6);
         
+        $codigosRecordarhtml=$paginadorhtml->toArray();
+        
+        $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
+        
+        /*verificamos sino existen elementos*/
+        if(!empty($codigosRecordarhtml)){
+            $request->session()->flash('busqueda', '<h3><span class="label label-success">'.$buscar.'</span></h3>');
+            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml]);
+           
+        }else{
+
+            //Si no existen resultados redirigimos  
+            $request->session()->flash('mensaje', 'Lo sentimos pero no se an encontrado Coincidencias');
+            $request->session()->flash('busqueda', '<h3><span class="label label-danger">'.$buscar.'</span></h3>');
+            return redirect('/');
+        
+        }
+
     }
 }

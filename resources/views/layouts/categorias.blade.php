@@ -43,9 +43,9 @@ Home Recordatorios
 		          <i class="fa fa-plus"></i> &nbsp
 		        </button>  
 		      </span>
-		      <input type="text" name="buscar" onkeydown="javascript:enviarFormuarioConEnter(event,'#miformulario')" class="form-control" placeholder="Search for...">
+		      <input type="text" name="buscar" onkeydown="javascript:enviarFormuarioConEnter(event,'#miformulario')" class="form-control" placeholder="Por nombre o descripsion">
 		      <span class="input-group-btn">
-		        <button class="btn btn-default" type="button">Go!</button>  
+		         <input type="submit" name="Go!" value="Go!" class="btn btn-default"  type="button"> 
 		      </span>
 		    </div><!-- /input-group -->
 
@@ -80,7 +80,7 @@ Home Recordatorios
 
 			  <!-- Nav tabs -->
 			  <ul id="myTabs" class="nav nav-tabs pestanas" role="tablist">
-			    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">Nombre CAtegoria</a></li>
+			    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">{{$nombre}}</a></li>
 			  </ul><!-- /Nav tabs -->
 			
 			</div>	
@@ -88,7 +88,7 @@ Home Recordatorios
 
 			<!-- Tab panes -->
 			<div class="tab-content col-md-12">
-
+				
 				<br>
 				<br>
 

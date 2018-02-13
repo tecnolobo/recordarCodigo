@@ -22,8 +22,7 @@ function enviarFormuarioConEnter(event,formulario=null){
 
 	//VALIDO LA TECLA PRESIONADA
 	if(event.keyCode == 13){ //13 = ENTER
-		alert('Hola'); //AQUI PUEDES PONER EL ENVIO DEL FORMULARIO : document.formulario.submit; 
-		
+		//AQUI PUEDES PONER EL ENVIO DEL FORMULARIO : document.formulario.submit; 
 		if(!formulario==null){
 			//enviamos el fomrulario
 			$(formulario).submit();

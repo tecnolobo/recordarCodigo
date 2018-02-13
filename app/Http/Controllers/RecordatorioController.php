@@ -309,17 +309,29 @@ class RecordatorioController extends Controller
 
         $imagenes=DB::table('imagens')->get();
 
-        $paginadorhtml = DB::table('proyecto_master_htmls')->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')->orderBy('id', 'desc')->where('id_categoria',$id)->paginate(6);
+        $paginadorhtml = DB::table('proyecto_master_htmls')
+        ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')
+        ->orderBy('id', 'desc')
+        ->where('id_categoria',$id)
+        ->paginate(6);
         
         $codigosRecordarhtml=$paginadorhtml->toArray();
         
         $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
         
+        /*tomamos el nombre de la categoria para enviarla*/
+        foreach ($imagenes as $categorias) {
+            if($categorias->id == $id ){
+
+                $nombre_categoria=$categorias->nombre;
+            
+            }
+        }
 
         /*verificamos sino existen elementos*/
         if(!empty($codigosRecordarhtml)){
             
-            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml  ]);
+            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml, 'nombre'=>$nombre_categoria  ]);
            
         }else{
 

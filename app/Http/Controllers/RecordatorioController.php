@@ -363,7 +363,7 @@ class RecordatorioController extends Controller
         /*verificamos sino existen elementos*/
         if(!empty($codigosRecordarhtml)){
             $request->session()->flash('busqueda', '<h3><span class="label label-success">'.$buscar.'</span></h3>');
-            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml]);
+            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml, 'nombre'=>'Resultados']);
            
         }else{
 

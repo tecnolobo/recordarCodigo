@@ -51,24 +51,25 @@ Home Recordatorios
 
 		</form><!--fin fomrulario-->
 	
-
+		<br>
     </div>
 	
 
     <div class="row">
-    	<div class="container-fluid">
-	        <div class="row margin-bottom-20px">
-	        	<!--Mensajes de session-->
-				@if(Session::has('mensaje'))
-					<br>
-					<div class=" col-md-12 alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						{{Session::get('mensaje')}}
-					</div>
-				@endif
-				<!--/Mensajes de session-->
-	        </div>
-        </div>
+
+    	<!--Mensajes de session-->
+		@if(Session::has('mensaje'))
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{{Session::get('mensaje')}}
+			</div>
+		@endif
+
+    	@if(Session::has('busqueda'))
+			{!!Session::get('busqueda')!!}
+			<br>
+		@endif	
+		<!--/Mensajes de session-->
     </div>
 
     <!--Lo mas reciente-->

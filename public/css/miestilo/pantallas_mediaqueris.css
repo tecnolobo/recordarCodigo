@@ -1,7 +1,8 @@
 
 /* Para 960px */  
-@media only screen and (max-width: 1360px) and (min-width: 981px) {  
+@media only screen and (max-width: 1370px) and (min-width: 981px) {  
   /*body{background-color: yellow}*/
+
   .header_top {
     /* padding-bottom: 25px; */
     height: 43px;
@@ -166,13 +167,13 @@
   /*body{background-color: purple;}*/
   
   .thumbnail>.caption{
-  	cursor: pointer;
-  	
-  	/*display: inline-block;
-  	width: 100%;
-  	height: auto;*/
+    cursor: pointer;
+    
+    /*display: inline-block;
+    width: 100%;
+    height: auto;*/
   }
-	
+  
   .thumbnail>.caption>h3{ 
     margin: 0px !important;
     display: inline-block;
@@ -185,7 +186,7 @@
   }
 
   .thumbnail>.caption>time{
-  	position: absolute;
+    position: absolute;
     margin: auto;
     right: 27px;
     left: auto;
@@ -195,23 +196,23 @@
     /*background-color: grey;*/
     max-height: 100px;
     height: 43px;
-  	width: auto;
-  	margin: auto;
-  	position: relative;
-  	left: 0px;
-  	right: 0px;
+    width: auto;
+    margin: auto;
+    position: relative;
+    left: 0px;
+    right: 0px;
     overflow: hidden;
     text-overflow: ellipsis;  
-  	
+    
   }
 
 
   .hidden-xxs{
-  	display: none !important;
+    display: none !important;
   }
 
   .visble-xxs{
-  	visibility:visible;
+    visibility:visible;
   }
 
   .papa{
@@ -245,11 +246,11 @@
 
 
   .thumbnail>.caption{
-  	/*display: inline-block;
-  	width: 100%;
-  	height: auto;*/
+    /*display: inline-block;
+    width: 100%;
+    height: auto;*/
   }
-	
+  
    .thumbnail>.caption>h3{ 
     margin: 0px !important;
     display: inline-block;
@@ -262,29 +263,29 @@
   }
 
   .thumbnail>.caption>time{
-  	position: absolute;
+    position: absolute;
     margin: auto;
     right: 27px;
     left: auto;
   }
 
   .thumbnail>.caption>p{
-  	width: auto;
-  	margin: auto;
-  	position: relative;
-  	left: 0px;
-  	right: 0px;
+    width: auto;
+    margin: auto;
+    position: relative;
+    left: 0px;
+    right: 0px;
     height: 45px;
     overflow: hidden;
-  	
+    
   }
 
   .hidden-cel{
-  	display: none !important;
+    display: none !important;
   }
 
-	.visble-cel{
-  	display: block;
+  .visble-cel{
+    display: block;
   }
 
   .pestanas{
@@ -308,11 +309,11 @@
     left: 90.0469px !important;
   }
   .thumbnail>.caption{
-  	/*display: inline-block;
-  	width: 100%;
-  	height: auto;*/
+    /*display: inline-block;
+    width: 100%;
+    height: auto;*/
   }
-	
+  
   .thumbnail>.caption>h3{ 
     margin: 0px !important;
     display: inline-block;
@@ -324,18 +325,18 @@
   }
 
   .thumbnail>.caption>time{
-  	position: absolute;
+    position: absolute;
     margin: auto;
     right: 27px;
     left: auto;
   }
 
   .thumbnail>.caption>p{
-  	width: auto;
-  	margin: auto;
-  	position: relative;
-  	left: 0px;
-  	right: 0px;
+    width: auto;
+    margin: auto;
+    position: relative;
+    left: 0px;
+    right: 0px;
   }
 
   .thumbnail>.caption>p:first-of-type{
@@ -351,11 +352,11 @@
   
 
   .hidden-xxs{
-  	display: none !important;
+    display: none !important;
   }
 
   .visble-xxs{
-  	display: block;
+    display: block;
   }
 
    .col-xs-6 {

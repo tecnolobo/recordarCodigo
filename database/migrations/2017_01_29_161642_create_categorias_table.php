@@ -16,6 +16,7 @@ class CreateCategoriasTable extends Migration
             $table->increments('id_categoria');
             $table->string('nombre');
             $table->longText('descripsion');
+            $table->string('imagen');
             /*$table->integer('id_tipo_noticia')->index();
             $table->integer('id_user')->index();aqui le decimos q sera un indice para refrerenciar otra tabla*/
         });

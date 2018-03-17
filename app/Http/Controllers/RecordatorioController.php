@@ -29,7 +29,7 @@ class RecordatorioController extends Controller
     {   
 
 
-        $imagenes=DB::table('imagens')->get();
+        $imagenes=DB::table('categorias')->get();
         /*$codigos=PmHtml::find(3);
         dd($codigos->created_at->toFormattedDateString());*/
         $paginadorlaravel = DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
@@ -53,7 +53,7 @@ class RecordatorioController extends Controller
      */
     public function create()
     {   
-        $imagenes=DB::table('imagens')->get();
+        $imagenes=DB::table('categorias')->get();
         $categorias=DB::table('categorias')->get();
         
         return view('layouts.nuevoRecordatorio',['categorias'=>$categorias , 'imagenes'=>$imagenes]);
@@ -172,7 +172,7 @@ class RecordatorioController extends Controller
      */
     public function show($id)
     {
-        $imagenes=DB::table('imagens')->get();
+        $imagenes=DB::table('categorias')->get();
         //se hace la consulta relacionada de las tablas proyecto_master_htmls y coteogrias por el campo id_categoria
         //y se seleciona un solo registro por su id
         $codigoMasterHtml= DB::table('proyecto_master_htmls')
@@ -242,7 +242,7 @@ class RecordatorioController extends Controller
 
     public function showCodigoLaravel($id)
     {
-        $imagenes=DB::table('imagens')->get();
+        $imagenes=DB::table('categorias')->get();
 
         $codigoLaravel=DB::table('proyecto_laravels')->where('id',$id)->get();
 
@@ -307,7 +307,7 @@ class RecordatorioController extends Controller
     public function categoria($id,Request $request)
     {   
 
-        $imagenes=DB::table('imagens')->get();
+        $imagenes=DB::table('categorias')->get();
 
         $paginadorhtml = DB::table('proyecto_master_htmls')
         ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')
@@ -321,7 +321,7 @@ class RecordatorioController extends Controller
         
         /*tomamos el nombre de la categoria para enviarla*/
         foreach ($imagenes as $categorias) {
-            if($categorias->id == $id ){
+            if($categorias->id_categoria == $id ){
 
                 $nombre_categoria=$categorias->nombre;
             
@@ -348,7 +348,7 @@ class RecordatorioController extends Controller
 
         $buscar = $request->buscar;
 
-        $imagenes=DB::table('imagens')->get();
+        $imagenes=DB::table('categorias')->get();
 
         $paginadorhtml = DB::table('proyecto_master_htmls')
         ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')

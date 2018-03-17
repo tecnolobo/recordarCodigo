@@ -156,9 +156,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		          	 <div class="ocarousel_slider">  
 	      				<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
 			                <div class="ocarousel_window">
-
 							@foreach ($imagenes as $imagen)
-								<a href="/categoria/{{ $imagen->id }}" title="{{ $imagen->nombre }}"> <img src="{{ URL::asset($imagen->url) }}" alt="" /><p>{{ $imagen->nombre }}</p></a>
+								<a href="/categoria/{{ $imagen->id_categoria }}" title="{{ $imagen->nombre }}"> <img src="{{ URL::asset($imagen->imagen) }}" alt="" /><p>{{ $imagen->nombre }}</p></a>
 							@endforeach
 
 			                </div>

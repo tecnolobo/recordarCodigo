@@ -29,7 +29,7 @@ Home Recordatorios
     <div class="row">
        	
        	<!--fomrulario-->
-		<form id="miformulario" action="{{ url('buscar') }}" method="post">
+		<form id="miformulario" action="{{ url('buscar') }}" method="get">
 			
 			{!! csrf_field() !!}
 			
@@ -105,9 +105,12 @@ Home Recordatorios
 					                    <p>
 					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
 					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id )}}')">Eliminar</a>
+					                    	 <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('editarCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}" >Editar</a>
 					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $codigosRecordarhtml[$i][$j]->nombre }}" data-content="{{ $codigosRecordarhtml[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
+					                        
 					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
 					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id) }}','{{ $codigosRecordarhtml[$i][$j]->id }}')">Eliminar</a>
+					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('editarCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}" >Editar</a>
 					                    </p>
 					                </div>
 					            </div>

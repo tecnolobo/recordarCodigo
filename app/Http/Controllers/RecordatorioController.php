@@ -345,7 +345,6 @@ class RecordatorioController extends Controller
 
     public function buscar(Request $request)
     {   
-
         $buscar = $request->buscar;
 
         $imagenes=DB::table('categorias')->get();
@@ -355,10 +354,17 @@ class RecordatorioController extends Controller
         ->where('nombre', 'like', '%'.$buscar.'%')
         ->orderBy('id', 'desc')
         ->paginate(6);
+
+        
+        //Se le agrega el parametro de busqueda al paginador
+        $paginadorhtml->appends(['buscar' => $buscar]);
+
         
         $codigosRecordarhtml=$paginadorhtml->toArray();
         
         $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
+
+        
         
         /*verificamos sino existen elementos*/
         if(!empty($codigosRecordarhtml)){
@@ -375,4 +381,78 @@ class RecordatorioController extends Controller
         }
 
     }
+
+
+    public function editHtmlMaster($id){
+
+
+        $imagenes=DB::table('categorias')->get();
+        //se hace la consulta relacionada de las tablas proyecto_master_htmls y coteogrias por el campo id_categoria
+        //y se seleciona un solo registro por su id
+        $codigoMasterHtml= DB::table('proyecto_master_htmls')
+        ->join('categorias','categorias.id_categoria','=','proyecto_master_htmls.id_categoria')
+        ->select(
+            'proyecto_master_htmls.nombre',
+            'proyecto_master_htmls.descripsion',
+            'proyecto_master_htmls.html',
+            'proyecto_master_htmls.css',
+            'proyecto_master_htmls.php',
+            'proyecto_master_htmls.javascript',
+            'proyecto_master_htmls.jquery',
+            'categorias.nombre as tipo',
+            'categorias.id_categoria as id_tipo'
+            )->where('id',$id)
+            ->get();
+
+        if(empty($codigoMasterHtml)){
+            abort('404');
+        }
+
+
+        switch ($codigoMasterHtml[0]->id_tipo) {
+            
+            case 1:
+                $datos=array('html',array('html'));
+                break;
+
+            case 2:
+                $datos=array('laravel',array('modelo','vista','controlador'));
+                break;
+
+            case 3:
+                $datos=array('htmlycss',array('html','css'));
+                break;
+
+            case 4:
+                $datos=array('apphtml',array('html','css','javascript','jquery','php'));
+                break;
+
+            case 5:
+                $datos=array('javascript',array('html','css','javascript'));
+                break;
+
+            case 6:
+                $datos=array('php',array('html','php'));
+                break;
+
+            case 7:
+                $datos=array('jquery',array('html','css','jquery'));
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+
+        /*echo $codigoMasterHtml[0]->tipo;
+        echo $codigoMasterHtml[0]->id_tipo;
+        dd($datos);
+        exit;*/
+        //dd($codigoMasterHtml);
+        return view('layouts.editCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMasterHtml, 'datos'=>$datos]);
+        
+    }
+
+
 }

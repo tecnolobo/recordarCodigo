@@ -23,6 +23,7 @@ Route::get('destroyCodigoLaravel/{id}',"RecordatorioController@destroyCodigoLara
 Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")->where('id','[0-9]+');
 Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+');
 Route::get('recordatorio',"RecordatorioController@create");
+Route::get('editarCodigo/{id}',"RecordatorioController@editHtmlMaster")->where('id','[0-9]+');
 Route::post('guardarRecordatorio',"RecordatorioController@store");
-Route::post('buscar',"RecordatorioController@buscar")->where('b',"[a-zA-z]+");
+Route::get('buscar',"RecordatorioController@buscar")->where('b',"[a-zA-z]+");
 Route::get('/cache', function () {$exitCode = Artisan::call('cache:clear');  Artisan::call('config:clear'); Artisan::call('view:clear'); });

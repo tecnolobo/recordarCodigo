@@ -16,14 +16,25 @@
 });*/
 Route::get('error',function(){ abort('404');});
 
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('editarCodigo/{id}',"RecordatorioController@editHtmlMaster")->where('id','[0-9]+');
+	Route::get('destroyCodigoLaravel/{id}',"RecordatorioController@destroyCodigoLaravel")->where('id','[0-9]+');
+	Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")->where('id','[0-9]+');
+});
+
 Route::get('/',"RecordatorioController@index");
 Route::get('showCodigo/{id}',"RecordatorioController@show")->where('id','[0-9]+');
 Route::get('showCodigoLaravel/{id}',"RecordatorioController@showCodigoLaravel")->where('id','[0-9]+');
-Route::get('destroyCodigoLaravel/{id}',"RecordatorioController@destroyCodigoLaravel")->where('id','[0-9]+');
-Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")->where('id','[0-9]+');
+
 Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+');
 Route::get('recordatorio',"RecordatorioController@create");
-Route::get('editarCodigo/{id}',"RecordatorioController@editHtmlMaster")->where('id','[0-9]+');
 Route::post('guardarRecordatorio',"RecordatorioController@store");
 Route::get('buscar',"RecordatorioController@buscar")->where('b',"[a-zA-z]+");
 Route::get('/cache', function () {$exitCode = Artisan::call('cache:clear');  Artisan::call('config:clear'); Artisan::call('view:clear'); });
+
+
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

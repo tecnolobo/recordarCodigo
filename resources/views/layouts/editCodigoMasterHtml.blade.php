@@ -14,6 +14,28 @@ Recordatorio
 	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/codemirror/addon/display/fullscreen.css')}}">
 @stop
 
+@section('mensajes')
+	
+	
+	@if(Session::has('success'))
+		<div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom:0px !important">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			{{Session::get('success')}}
+		</div>
+	@endif
+
+	@if(Session::has('error'))
+		<div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom:0px !important">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{{Session::get('error')}}
+		</div>
+		
+		<br>
+	@endif	
+			
+
+@stop
+
 
 @section('contenidoAbajoizquierda')
 	iiiiii
@@ -44,29 +66,6 @@ Recordatorio
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-md-12">
-				<!--Mensajes de session-->
-
-					@if(Session::has('success'))
-						<div class="alert alert-success alert-dismissible" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							{{Session::get('success')}}
-						</div>
-					@endif
-
-			    	@if(Session::has('error'))
-				    	<div class="alert alert-success alert-dismissible" role="alert">
-								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								{{Session::get('error')}}
-						</div>
-						
-						<br>
-					@endif	
-				</div>
-				<!--/Mensajes de session-->
-			</div>
-		</div>
 		
 		<!--Codigos-->
 		<div class="row codigos">

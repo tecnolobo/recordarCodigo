@@ -273,9 +273,45 @@ class RecordatorioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function updateCodigoMasterHtml(Request $request)
+    {   
+
+        $camposActualizar= [];
+
+        $id=$request->id;
+        $html=htmlentities($request->html);
+        $css=htmlentities($request->css);
+        $php=htmlentities($request->php);;
+        $javascript=htmlentities($request->javascript);;
+        $jquery=htmlentities($request->jquery);
+
+        try {
+
+            // armamos el arreglo que pasaremos para actualiar el modelo(registro)
+            if($html != ""){ $camposActualizar['html'] = $html; }
+            if($css != ""){ $camposActualizar['css'] =  $css; }
+            if($php != ""){ $camposActualizar['php'] = $php; }
+            if($javascript != ""){ $camposActualizar['javascript'] = $javascript; }
+            if($jquery != ""){ $camposActualizar['jquery'] = $jquery; }
+
+            // creamos la nueva instancia del modelo a actualizar
+            $PmHtml= new PmHtml;
+
+            //le pasamos los elementos a actualizar al modelo con base al id
+            $PmHtml::where('id', $id)->update($camposActualizar);
+
+
+            $request->session()->flash('success', 'Registro actualizado correctamente ');
+
+            return redirect()->to('/editarCodigo/'.$id);
+            
+        } catch (Exception $e) {
+            
+            $request->session()->flash('error', 'Lo sentimos existio un error : '.$e);
+
+            return redirect()->to('/editarCodigo/'.$id);
+        }
+
     }
 
    
@@ -450,7 +486,7 @@ class RecordatorioController extends Controller
         dd($datos);
         exit;*/
         //dd($codigoMasterHtml);
-        return view('layouts.editCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMasterHtml, 'datos'=>$datos]);
+        return view('layouts.editCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMasterHtml, 'id'=>$id, 'datos'=>$datos]);
         
     }
 

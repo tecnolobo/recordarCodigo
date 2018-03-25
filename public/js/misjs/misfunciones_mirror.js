@@ -24,6 +24,10 @@ function declararelementosmirrorThtml(id,incrementado){
 	        tipo ="application/x-httpd-php";
 	        break;
 
+		case 'jquery':
+
+	        tipo ="javascript";
+	        break;	    
 
 	    default:
 	     	

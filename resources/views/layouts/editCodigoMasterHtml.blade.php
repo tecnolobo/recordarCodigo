@@ -43,12 +43,37 @@ Recordatorio
 				
 			</div>
 		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<!--Mensajes de session-->
 
+					@if(Session::has('success'))
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							{{Session::get('success')}}
+						</div>
+					@endif
+
+			    	@if(Session::has('error'))
+				    	<div class="alert alert-success alert-dismissible" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								{{Session::get('error')}}
+						</div>
+						
+						<br>
+					@endif	
+				</div>
+				<!--/Mensajes de session-->
+			</div>
+		</div>
 		
 		<!--Codigos-->
 		<div class="row codigos">
 		
-			<form action="">
+			<form action="{{url('actualizarCodigoMasterHtml')}}" method="post">
+				
+				{!! csrf_field() !!}
 
 				@for ($i = 0; $i <count($datos[1]) ; $i++)
 
@@ -66,11 +91,22 @@ Recordatorio
 							<br>
 
 							@if ($datos[1][$i] =='jquery')
-								  <?php $datos[1][$i]='javascript'; ?>
+								
+								@php
+								    $tipo='jquery';
+								@endphp
+								
+
+							@else
+
+								@php
+						     		$tipo=$datos[1][$i];
+						     	@endphp
+
 							@endif
 
 							<!--Aqui el id del elemento le agregamos la variable $i para hacerlo unico-->
-							<textarea name="n" id="{{$datos[1][$i].$i }}" >{{ $codigo[0]->$datos[1][$i] }}</textarea>
+							<textarea  name="{{ $tipo }}" id="{{ $tipo.$i }}" >{{ $codigo[0]->$datos[1][$i] }}</textarea>
 
 						</div>
 					@endif
@@ -78,6 +114,22 @@ Recordatorio
 				
 
 				@endfor
+
+				<div class="cold-md-12">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-8 ">
+							
+						</div>
+						<div class="col-md-2 margin-bottom-15px">
+							<input type="submit" name="Guardar" value="Guardar" class="btn btn-default btn-block btn-md">
+						</div>
+					</div>
+					
+
+					<input type="hidden" name="id" value="{{ $id }}">
+				</div>
+				
 
 			</form>
 			

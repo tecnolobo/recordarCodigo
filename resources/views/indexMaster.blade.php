@@ -22,7 +22,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--/nuevosCss-->
 
 </head>
-<body  >
+<body >
+	<!--Mensajes al usuario-->
+		@yield('mensajes')
+	<!--Mensajes al usuario-->
+	
 	<div class="header">
   	  		<div class="wrap">
 				<div class="header_top">

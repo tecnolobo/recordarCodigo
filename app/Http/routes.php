@@ -19,6 +19,7 @@ Route::get('error',function(){ abort('404');});
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('editarCodigo/{id}',"RecordatorioController@editHtmlMaster")->where('id','[0-9]+');
+	Route::post('actualizarCodigoMasterHtml',"RecordatorioController@updateCodigoMasterHtml");
 	Route::get('destroyCodigoLaravel/{id}',"RecordatorioController@destroyCodigoLaravel")->where('id','[0-9]+');
 	Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")->where('id','[0-9]+');
 });

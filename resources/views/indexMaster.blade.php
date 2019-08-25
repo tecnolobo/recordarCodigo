@@ -131,7 +131,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li>
 							<a href="contact.html">Contactanos</a>
 						</li>
+						
+						<div style="display: block;   padding: 10px 15px;   position: absolute;   right: 0px;">
+							
+							<li>
+								<a href="javascript:void(0)" style="border-top: none;text-decoration: none;">{{Auth::user()->name}}</a>
+							</li>
+							
+						</div>
 					</ul>
+					
+					
 					 <span class="left-ribbon"> </span> 
       				 <span class="right-ribbon"> </span>    
   		    </div>

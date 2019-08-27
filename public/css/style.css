@@ -332,6 +332,10 @@ body {
 .ocarousel_window {
 	width: 100%;
 }
+.ocarousel_window img{
+	width: 80px;
+	height: 80px;
+}
 .ocarousel {
     display: none;
     padding-top:35px;

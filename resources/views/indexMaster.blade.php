@@ -132,13 +132,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="contact.html">Contactanos</a>
 						</li>
 						
+						@if (Auth::check())
+						
+						<li>
+							<a href="{{ url('categorias') }}">Categorias</a>
+							
+						</li>
+
 						<div style="display: block;   padding: 10px 15px;   position: absolute;   right: 0px;">
-							
+			
 							<li>
-								<a href="javascript:void(0)" style="border-top: none;text-decoration: none;">{{Auth::user()->name}}</a>
+								<a href="javascript:void(0)" style="border-top: none;text-decoration: none;">
+									<span class="fa fa-user-circle" aria-hidden="true"></span>
+									{{Auth::user()->name}}
+								</a>
 							</li>
-							
+
 						</div>
+
+						@endif
+						
+						
+						
 					</ul>
 					
 					
@@ -161,28 +176,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    <!------------End Header ------------>
   <div class="main">
       <div class="content">
-    	        <div class="content_top">
-    	        	<div class="wrap">
-		          	   <h3 class="h3x">Categorias</h3>
-		          	</div>
-		          	<div class="line"> </div>
-		          	<div class="wrap">
-		          	 <div class="ocarousel_slider">  
-	      				<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
-			                <div class="ocarousel_window">
-							@foreach ($imagenes as $imagen)
-								<a href="/categoria/{{ $imagen->id_categoria }}" title="{{ $imagen->nombre }}"> <img src="{{ URL::asset($imagen->imagen) }}" alt="" /><p>{{ $imagen->nombre }}</p></a>
-							@endforeach
+					
+		  
+        <div class="content_top">
 
-			                </div>
-			               <span>           
-			                <a href="#" data-ocarousel-link="left" style="float: left;" class="prev"> </a>
-			                <a href="#" data-ocarousel-link="right" style="float: right;" class="next"> </a>
-			               </span>
-					   </div>
-				     </div>  
-				   </div>    		
-    	       </div>
+	        	<div class="wrap">
+	          	   <h3 class="h3x">Categorias</h3>
+	          </div>
+
+	          	<div class="line"> </div>
+
+	          	<div class="wrap">
+
+			          		<div class="ocarousel_slider">  
+
+				      				<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
+						                <div class="ocarousel_window">
+															@foreach ($imagenes as $imagen)
+																<a href="/categoria/{{ $imagen->id_categoria }}" title="{{ $imagen->nombre }}"> <img src="{{ URL::asset($imagen->imagen) }}" alt="" /><p>{{ $imagen->nombre }}</p></a>
+															@endforeach
+
+						                </div>
+						               <span>           
+						                <a href="#" data-ocarousel-link="left" style="float: left;" class="prev"> </a>
+						                <a href="#" data-ocarousel-link="right" style="float: right;" class="next"> </a>
+						               </span>
+								   		</div>
+
+						     		</div> 
+
+						  </div>   
+
+      	</div>
+
+      
     	  <div class="content_bottom">
     	    <div class="wrap">
     	    	<div class="content-bottom-left">

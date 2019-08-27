@@ -22,6 +22,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('actualizarCodigoMasterHtml',"RecordatorioController@updateCodigoMasterHtml");
 	Route::get('destroyCodigoLaravel/{id}',"RecordatorioController@destroyCodigoLaravel")->where('id','[0-9]+');
 	Route::get('destroyCodigoHtml/{id}',"RecordatorioController@destroyCodigoHtml")->where('id','[0-9]+');
+
+	//Categorias
+	Route::get('categorias',"CategoriasController@index");
+	Route::get('categorias/nuevo',"CategoriasController@create");
+	Route::get('destroyCategoria/{id}',"CategoriasController@destroy")->where('id','[0-9]+');
+	Route::post('categorias/guardarCategoria',"CategoriasController@store");
+	
+
 });
 
 Route::get('/',"RecordatorioController@index");

@@ -17,6 +17,15 @@ function eliminarRecordatorio(routeId){
 	}
 }
 
+function eliminarConfirm(routeId){
+	x=confirm('Esta seguro que desea eliminarlo?');
+
+	if(x){
+		window.location=routeId;
+
+	}
+}
+
 function enviarFormuarioConEnter(event,formulario=null){
 	// PARA VER QUE TECLA ESTA PRESIONADO 
 

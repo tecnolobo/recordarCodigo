@@ -95,6 +95,9 @@ class CategoriasController extends Controller
             $imagen_name = $request->file('imagen')->getClientOriginalName();
             $extension_img = $request->file('imagen')->getClientOriginalExtension();
 
+            
+            /*
+            subur archivos con metod laravel
             $file_to_save = '';
 
             if ($request->hasFile('imagen')){
@@ -104,7 +107,40 @@ class CategoriasController extends Controller
                 Storage::disk('public')->put( $file_to_save, File::get($request->file('imagen')) );
         
             }
+            */
 
+            $my_path = $_SERVER['DOCUMENT_ROOT'];
+
+            $target_dir = $my_path."/img/";
+
+            $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+
+            $image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+            $file_to_save = $request->nombre.'_'.rand(1,10000).'_.'.$image_extension;
+
+            $file_to_save = $target_dir.$file_to_save;
+
+
+            if ($_FILES["imagen"]["size"] > 500000) {
+
+                    $request->session()->flash('mensaje', 'Imagen demaciado grande');
+                    return redirect('/categorias');
+
+            }
+
+            if($image_extension != "jpg" && $image_extension != "png" && $image_extension != "jpeg" && $image_extension != "gif" ) {
+                $request->session()->flash('mensaje', 'Solo se permiten imagenes');
+                return redirect('/categorias');
+            }
+
+            //subimos la imagen
+            if (!move_uploaded_file($_FILES["imagen"]["tmp_name"], $file_to_save)) {
+                    
+                $request->session()->flash('mensaje', 'Error al subir la imagen');
+                return redirect('/categorias');
+               
+            }
 
             
 

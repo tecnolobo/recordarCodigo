@@ -22,6 +22,7 @@ use Session;
 
 use Validator;
 
+
 //para subir archivos
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -200,12 +201,29 @@ class CategoriasController extends Controller
     public function destroy(Request $request, $id)
     {
 
+        $my_path = $_SERVER['DOCUMENT_ROOT'];
+
+        $target_dir = $my_path;
+
         $categoriaEliminada=DB::table('categorias')->where('id_categoria', '=', $id)->get();
-        $categoriaEliminada=$categoriaEliminada[0]->nombre;
+        $nombreCategoriaEliminada=$categoriaEliminada[0]->nombre;
+
+        $categoriaimagen=$categoriaEliminada[0]->imagen;
+
+            
+        $ruta_file= $my_path.'/'.$categoriaimagen;
+        $ruta_file = str_replace("\\","/",$ruta_file);
+
+
+        if($categoriaimagen =! '' and file_exists ($ruta_file) ){
+
+            //Eliminamos la imagen
+            unlink($ruta_file);
+        }
 
         DB::table('categorias')->where('id_categoria', '=', $id)->delete();
         //dd('entro');
-        $request->session()->flash('mensaje', 'La categoria  "'.$categoriaEliminada.'" Fue eliminada');
+        $request->session()->flash('mensaje', 'La categoria  "'.$nombreCategoriaEliminada.'" Fue eliminada');
         return redirect()->to('categorias');
     }
 }

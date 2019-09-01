@@ -92,8 +92,6 @@ class CategoriasController extends Controller
            
             $pCategoria= new Categoria;
 
-            $imagen_name = $request->file('imagen')->getClientOriginalName();
-            $extension_img = $request->file('imagen')->getClientOriginalExtension();
 
             
             /*
@@ -117,9 +115,9 @@ class CategoriasController extends Controller
 
             $image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-            $file_to_save = $request->nombre.'_'.rand(1,10000).'_.'.$image_extension;
+            $file_name_to_save = $request->nombre.'_'.rand(1,10000).'_.'.$image_extension;
 
-            $file_to_save = $target_dir.$file_to_save;
+            $file_to_save = $target_dir.$file_name_to_save;
 
 
             if ($_FILES["imagen"]["size"] > 500000) {
@@ -147,7 +145,7 @@ class CategoriasController extends Controller
             $pCategoria::create([
             'nombre'       => $request->nombre,
             'descripsion'  => $request->descripsion,
-            'imagen'       => 'img/'.$file_to_save
+            'imagen'       => 'img/'.$file_name_to_save
             ]);
             
 

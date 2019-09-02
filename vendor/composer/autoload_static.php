@@ -271,6 +271,7 @@ class ComposerStaticInit2ec5be25b42bec2be41159fdd1d10c4c
     );
 
     public static $classMap = array (
+        'AddColumIdCategoriProyectoOracleTable' => __DIR__ . '/../..' . '/database/migrations/2019_09_01_235634_add_colum_id_categori_proyecto_oracle_table.php',
         'CategoriaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoriaTableSeeder.php',
         'CreateCategoriasTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_29_161642_create_categorias_table.php',
         'CreateImagensTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_06_185102_create_imagens_table.php',

@@ -6,13 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddColumIdCategoriProyectoOracleTable' => $baseDir . '/database/migrations/2019_09_01_235634_add_colum_id_categori_proyecto_oracle_table.php',
     'CategoriaTableSeeder' => $baseDir . '/database/seeds/CategoriaTableSeeder.php',
     'CreateCategoriasTable' => $baseDir . '/database/migrations/2017_01_29_161642_create_categorias_table.php',
-    'CreateImagensTable' => $baseDir . '/database/migrations/2017_02_06_185102_create_imagens_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateProyectProyectoOracleTable' => $baseDir . '/database/migrations/2019_09_01_224828_create_proyect_proyecto_oracle_table.php',
-    'CreateProyectoLaravelsTable' => $baseDir . '/database/migrations/2017_01_25_153842_create_proyecto_laravels_table.php',
     'CreateProyectoMasterHtmlsTable' => $baseDir . '/database/migrations/2017_01_25_153850_create_proyecto_master_htmls_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

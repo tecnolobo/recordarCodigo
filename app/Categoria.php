@@ -8,7 +8,7 @@ class Categoria extends Model
 {
 	protected $table= "categorias";
 	protected $primarykey= "id";
-    public $timestamps  = false;
+    public $timestamps  = true;
 
     /*Con esta bariable protegida la pasamos los campos que podran ser rellenado de la base de datos*/
     protected $fillable = [

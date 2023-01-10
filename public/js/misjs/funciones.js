@@ -17,6 +17,17 @@ function eliminarRecordatorio(routeId){
 	}
 }
 
+
+function eliminarCategoria(routeId){
+	x=confirm('Esta seguro que desea eliminar la categoria?');
+
+	if(x){
+		window.location=routeId;
+
+	}
+}
+
+
 function eliminarConfirm(routeId){
 	x=confirm('Esta seguro que desea eliminarlo?');
 
@@ -40,9 +51,19 @@ function enviarFormuarioConEnter(event,formulario=null){
 
 }
 
+
+function createElementsTypeFiles(){
+
+	var c = document.getElementsByClassName('grupo-archivos')[0];
+	var clon = c.cloneNode("grupo-archivos");
+	var mid = document.getElementById("archivos");
+	mid.appendChild(clon);
+}
+
+
 $(document).ready(function() {	
 
-
+	
 	$("a").parents('li').css("color", "red");
 	
 	function crearHtml(texto, ids){
@@ -91,102 +112,35 @@ $(document).ready(function() {
 				
 			//alert($('#tipo option:selected').text());
 			var v=0;
-			v =$('#tipo option:selected').html();
-			
-			//Proyecto laravel
-			$("div[id=modelo]").remove();
-			$("div[id=vista]").remove();
-			$("div[id=controller]").remove();
+			v =$('#tipo option:selected').val();
 
-			//Proyecto html
-			$("div[id=html]").remove();
-	        $("div[id=css]").remove();
-	        $("div[id=php]").remove();
-	        $("div[id=javascript]").remove();
-	        $("div[id=jquery]").remove();
-
-	        //oracle
-	        $("div[id=sql]").remove();
-			$("div[id=plsql]").remove();
-
-
-			switch (v) {
-
+			for (let index = 0; index < 10; index++) {
 				
-				//console.log('k'+$('select[id=tipo]').attr('value'));
-			    case '':
-			        alert("porfavor elija una opcion");
-			        break;
+				$("div[id=colum_"+(index+1)+"]").remove();
+				
+			}
+									
+			for (let index = 0; index < estructureCategory.length; index++) {
+				
+				if (v==estructureCategory[index].id_categoria) {			
 
-			    case 'html':
-			    	
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Html','html');
-			         $(".codeitem").trigger('create');
-			        break;
+					for (let indedos = 0; indedos < estructureCategory[index].tipos_archivos.length; indedos++) {						
+						
+						TituloExtension =estructureCategory[index].tipos_archivos[indedos].nombre;
+						NombreExtension = estructureCategory[index].tipos_archivos[indedos].extension_archivo;
+						
+						NameColumn = estructureCategory[index].tipos_archivos[indedos].nombre_column;
+												
+						crearHtml(TituloExtension,NameColumn);
+						
+					}
 
-
-			    case 'laravel':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Modelo','modelo');
-			        crearHtml('Vista','vista');
-			        crearHtml('Controlador','controlador');
-			         $(".codeitem").trigger('create');
-			        break;
-
-			    case 'Oracle':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-
-			        crearHtml('Sql','sql');
-			        crearHtml('Plsql','plsql');
-
-			        $(".codeitem").trigger('create');
-			        break;
-
-
-			    case 'htmlycss':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Html','html');
-			        crearHtml('Css','css');
-			         $("#codigo").trigger('create');
-			        break;
-
-			    case 'apphtml':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Html','html');
-			        crearHtml('Css','css');
-			        crearHtml('Php','php');
-			        crearHtml('Javascript','javascript');
-			        crearHtml('Jquery','jquery');
-			         $("#codigo").load();
-			        break;
-
-			    case 'javascript':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Html','html');
-			        crearHtml('Javascript','javascript');
-			         $("#codigo").trigger('create');
-			        break;
-
-			    case 'php':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Html','html');
-			        crearHtml('Php','php');
-			        $("#codigo").trigger('create');
-			        break;
-
-			    case 'jquery':
-			        /*alert("Elejiste =>"+ $('select[id=tipo]').val() );*/
-			        crearHtml('Html','html');
-			        crearHtml('Css','css');
-			        crearHtml('Jquery','jquery');
-			        $("#codigo").trigger('create');
-			        break;
-			    
+				}
+				
 			}
             
             
-        });
+    });
 
 	
 

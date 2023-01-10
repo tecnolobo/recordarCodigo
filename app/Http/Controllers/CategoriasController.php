@@ -16,6 +16,8 @@ use App\ProyectoLaravel as Plaravel;
 
 use App\Categoria as Categoria;
 
+use App\MimeTypmeFiles as MimeTypmeFiles;
+
 use DB;
 
 use Session;
@@ -55,8 +57,15 @@ class CategoriasController extends Controller
     {
         $imagenes=DB::table('categorias')->get();
         $categorias=DB::table('categorias')->get();
+        $mime_type_files=DB::table('mime_type_files')->get();
         
-        return view('layouts.nuevaCategoria',['categorias'=>$categorias , 'imagenes'=>$imagenes]);
+        return view('layouts.nuevaCategoria',
+                        [
+                        'categorias'=>$categorias , 
+                        'imagenes'=>$imagenes,
+                        'mime_type_files'=>$mime_type_files
+                        ]
+                    );
     }
 
     /**
@@ -67,6 +76,8 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
+        
         $mensajes=array(
             'nombre.required' => 'El campo nombre es Obligatorio',
             'imagen.image' => 'Solo se permiten imagenes',
@@ -77,7 +88,7 @@ class CategoriasController extends Controller
         $reglas=array ('nombre'=>'required',  'imagen' => 'image');
 
 
-        /*primer parametro. datos que envia formulario, segundo parametro las reglas que se deben cumplir*/
+        //primer parametro. datos que envia formulario, segundo parametro las reglas que se deben cumplir
 
         $validator=Validator::make($request->all(),$reglas,$mensajes); 
 
@@ -90,23 +101,35 @@ class CategoriasController extends Controller
         
         }else{//paso la validacion
             
-           
-            $pCategoria= new Categoria;
+            $nombres = $request->nombre;
+            $tipo_archivo = $request->tipo_archivo;
+            $arrayTiposArchivos = [];
+            $contant =0;
+
+            if(count($nombres)==count($tipo_archivo)){
+
+                for ($i=0; $i <count($nombres) ; $i++) { 
+                    
+                    $contant = $i+1;
+                    
+                    $mimetypeData = DB::table('mime_type_files')->where('id', '=', $tipo_archivo[$i])->get();
+
+                    $mirow= array(
+                                    "nombre"=>$nombres[$i], 
+                                    "nombre_column"=>"colum_".$contant, 
+                                    "extension_archivo"=>$mimetypeData[0]->mimetype,
+                                    "modo"=>$mimetypeData[0]->modo
+                                );
 
 
-            
-            /*
-            subur archivos con metod laravel
-            $file_to_save = '';
+                                
+                    array_push($arrayTiposArchivos,$mirow);
 
-            if ($request->hasFile('imagen')){
+                }
 
-
-                $file_to_save = $request->nombre.'_'.rand(1,10000).'_.'.$extension_img;
-                Storage::disk('public')->put( $file_to_save, File::get($request->file('imagen')) );
-        
             }
-            */
+
+            $pCategoria= new Categoria;
 
             $my_path = $_SERVER['DOCUMENT_ROOT'];
 
@@ -116,7 +139,7 @@ class CategoriasController extends Controller
 
             $image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-            $file_name_to_save = $request->nombre.'_'.rand(1,10000).'_.'.$image_extension;
+            $file_name_to_save = $request->nombrecategoria.'_'.rand(1,10000).'_.'.$image_extension;
 
             $file_to_save = $target_dir.$file_name_to_save;
 
@@ -140,18 +163,26 @@ class CategoriasController extends Controller
                 return redirect('/categorias');
                
             }
-
             
+            //creamos el array con la estructura correcta para ser insertado en la tabla categorias
+            
+            $arrayTiposArchivos = array('nombre'=>$request->nombrecategoria,'tipos_archivos'=>$arrayTiposArchivos);
+            
+            $arrayCategorias = array(
+                'nombre'=>$request->nombrecategoria,
+                'descripsion'=>$request->descripsion,
+                'imagen'       => 'img/'.$file_name_to_save,
+                'tipos_archivos'=>json_encode($arrayTiposArchivos)
+                );
 
-            $pCategoria::create([
-            'nombre'       => $request->nombre,
-            'descripsion'  => $request->descripsion,
-            'imagen'       => 'img/'.$file_name_to_save
-            ]);
+
+            $pCategoria::create($arrayCategorias);
             
 
             $request->session()->flash('mensaje', 'Su informacion fuer guardada exitosamente');
             return redirect('/categorias');
+
+            
 
         }
 
@@ -206,7 +237,19 @@ class CategoriasController extends Controller
         $target_dir = $my_path;
 
         $categoriaEliminada=DB::table('categorias')->where('id_categoria', '=', $id)->get();
+
+        $ProyectosEncontrados=DB::table('proyectos_master')->where('id_categoria', '=', $id)->count();
+
         $nombreCategoriaEliminada=$categoriaEliminada[0]->nombre;
+
+        
+        if($ProyectosEncontrados>0){
+
+            $request->session()->flash('mensaje', 'No se puede elimiar la categoria  "'.$nombreCategoriaEliminada.'" Por que aun tiene elementos que depende de el');
+            return redirect()->to('categorias');
+
+        }
+
 
         $categoriaimagen=$categoriaEliminada[0]->imagen;
 

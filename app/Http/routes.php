@@ -34,7 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/',"RecordatorioController@index");
 Route::get('showCodigo/{id}',"RecordatorioController@show")->where('id','[0-9]+');
+/*Route::get('showCodigo/{id}',"RecordatorioController@showCodeMasterHtmlProyect")->where('id','[0-9]+');
 Route::get('showCodigoLaravel/{id}',"RecordatorioController@showCodigoLaravel")->where('id','[0-9]+');
+*/
+
 
 Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+');
 Route::get('recordatorio',"RecordatorioController@create");

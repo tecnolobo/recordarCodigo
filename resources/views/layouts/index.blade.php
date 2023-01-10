@@ -101,6 +101,7 @@ Home Recordatorios
 					                    <h3 title="{{ $codigosRecordarhtml[$i][$j]->nombre }}">{{ $codigosRecordarhtml[$i][$j]->nombre }}</h3>
 					                    <time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarhtml[$i][$j]->created_at)) }}</time>
 					                    <p class="">{{ $codigosRecordarhtml[$i][$j]->descripsion }}</p>
+										<p class=""> ( {{$codigosRecordarhtml[$i][$j]->nombreCategoria}} )</p>
 					                    <br class="">
 					                    <p>
 					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
@@ -145,6 +146,7 @@ Home Recordatorios
 					                    <h3 title="{{ $codigosRecordarlaravel[$i][$j]->nombre }}">{{ $codigosRecordarlaravel[$i][$j]->nombre }}</h3>
 					                    <time class="tiempo">{{ date('d F Y', strtotime( $codigosRecordarlaravel[$i][$j]->created_at)) }}</time>
 					                    <p class="">{{ $codigosRecordarlaravel[$i][$j]->descripsion }}</p>
+										<p class="">{{ $codigosRecordarlaravel[$i][$j]->descripsion }}</p>
 					                    <br class="">
 					                    <p>
 					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigoLaravel/'.$codigosRecordarlaravel[$i][$j]->id) }}">Leer</a>

@@ -108,12 +108,12 @@ Home Recordatorios
 					                    <br class="">
 					                    <p>
 					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('detalleCategoria/'.$categoriasStructure[$i][$j]->id_categoria) }}">Ver</a>
-					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarConfirm('{{ URL::asset('destroyCodigoHtml/'.$categoriasStructure[$i][$j]->id_categoria )}}')">Eliminar</a>
+					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarCategoria('{{ URL::asset('destroyCodigoHtml/'.$categoriasStructure[$i][$j]->id_categoria )}}')">Eliminar</a>
 					                    	<a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('editarCategoria/'.$categoriasStructure[$i][$j]->id_categoria) }}" >Editar</a>
 					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $categoriasStructure[$i][$j]->nombre }}" data-content="{{ $categoriasStructure[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
 					                        
 					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('detalleCategoria/'.$categoriasStructure[$i][$j]->id_categoria) }}">Ver</a>
-					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarConfirm('{{ URL::asset('destroyCategoria/'.$categoriasStructure[$i][$j]->id_categoria) }}','{{ $categoriasStructure[$i][$j]->id_categoria }}')">Eliminar</a>
+					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarCategoria('{{ URL::asset('destroyCategoria/'.$categoriasStructure[$i][$j]->id_categoria) }}','{{ $categoriasStructure[$i][$j]->id_categoria }}')">Eliminar</a>
 											<a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('editarCategoria/'.$categoriasStructure[$i][$j]->id_categoria) }}" >Editar</a>
 					                    </p>
 					                </div>

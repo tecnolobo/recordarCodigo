@@ -1,3 +1,8 @@
+<?php
+/*echo json_encode($estructuraCategoria);
+exit;*/
+
+?>
 @extends('indexMaster')
 
 @section('title')
@@ -9,9 +14,9 @@ Recordatorio
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('plugins/css/font-awesome/css/font-awesome.css') }}">	
 	
 	<!--Css para el editor de texto-->	
-	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/css/codemirror/codemirror.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/css/codemirror/theme/monokai.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/codemirror/addon/display/fullscreen.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/codemirrorV5/lib/codemirror.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/codemirrorV5/theme/monokai.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{  URL::asset('plugins/codemirrorV5/addon/display/fullscreen.css')}}">
 @stop
 
 @section('mensajes')
@@ -73,46 +78,36 @@ Recordatorio
 			<form action="{{url('actualizarCodigoMasterHtml')}}" method="post">
 				
 				{!! csrf_field() !!}
+				        
+				<!--------------------------------------------------------------->
+			@for ($i = 0; $i <count($estructuraCategoria->tipos_archivos) ; $i++)
 
-				@for ($i = 0; $i <count($datos[1]) ; $i++)
+				@php 
+					$name_lenguach = $estructuraCategoria->tipos_archivos[$i]->extension_archivo; 
+					$contador = $i+1;
+					$name_column =  $estructuraCategoria->tipos_archivos[$i]->nombre_column;
+				@endphp	
 
-					
+				@if ($codigo[0]->$name_column !="")
+					<!--html-->
+					<div class="col-md-12 col-xs-12">
+						<h1 class="titulo grande">{{ $estructuraCategoria->tipos_archivos[$i]->nombre }}</h1>
+						<br>
+					</div>
 
-					
-					@if ($codigo[0]->$datos[1][$i] !="")
+					<div class="col-md-12 col-xs-12" style="margin-top: 0px;  margin-bottom: 32px; font-size: 15px;">
 
-						<div class="col-md-12 col-xs-12">
-							<h1 class="titulo grande">{{ $datos[1][$i] }}</h1>
-						</div>
-						<!--html-->
-						<div class="col-md-12 col-xs-12" style="margin-top: 0px;  margin-bottom: 32px; font-size: 15px;">
-							
-							<br>
+						@if ($name_lenguach =='jquery')
+							  <?php $name_lenguach='javascript'; ?>
+						@endif
 
-							@if ($datos[1][$i] =='jquery')
-								
-								@php
-								    $tipo='jquery';
-								@endphp
-								
+						<!--Aqui el id del elemento le agregamos la variable $i para hacerlo unico-->
+						<textarea  name="{{$estructuraCategoria->tipos_archivos[$i]->nombre_column }}" id="{{ $estructuraCategoria->tipos_archivos[$i]->nombre_column}}" >{{  $codigo[0]->$name_column }}</textarea>
+						
+					</div>
+				@endif
 
-							@else
-
-								@php
-						     		$tipo=$datos[1][$i];
-						     	@endphp
-
-							@endif
-
-							<!--Aqui el id del elemento le agregamos la variable $i para hacerlo unico-->
-							<textarea  name="{{ $tipo }}" id="{{ $tipo.$i }}" >{{ $codigo[0]->$datos[1][$i] }}</textarea>
-
-						</div>
-					@endif
-					
-				
-
-				@endfor
+			@endfor
 
 				<div class="cold-md-12">
 					<div class="row">
@@ -154,13 +149,26 @@ Recordatorio
 </script>
 
 
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/codemirror.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/mode/xml/xml.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/mode/htmlmixed/htmlmixed.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/mode/javascript/javascript.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/mode/css/css.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/mode/php/php.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('plugins/codemirror/mode/clike/clike.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('plugins/codemirrorV5/lib/codemirror.js') }}"></script>
+
+<script type="text/javascript" src="{{ URL::asset('plugins/codemirrorV5/mode/javascript/javascript.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('plugins/codemirrorV5/mode/css/css.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('plugins/codemirrorV5/mode/xml/xml.js') }}"></script>
+
+<!--Modos o mimetype de codemirror-->
+@for ($i = 0; $i < count($estructuraCategoria->tipos_archivos) ; $i++)
+
+	@php 
+		$the_uri =  $estructuraCategoria->tipos_archivos[$i]->modo."/".$estructuraCategoria->tipos_archivos[$i]->modo.".js";
+	@endphp	
+	<script type="text/javascript" src="{{ URL::asset('plugins/codemirrorV5/mode/') }}/{{$the_uri}}"></script>
+		
+
+@endfor
+
+<script type="text/javascript" src="{{ URL::asset('plugins/codemirrorV5/mode/clike/clike.js') }}"></script>
+
+
 
 <!--Fucnionalidad de pantalla completa del edito con F11-->
 <script type="text/javascript" src="{{ URL::asset('plugins/codemirror/addon/display/fullscreen.js') }}"></script>
@@ -170,19 +178,22 @@ Recordatorio
 <script type="text/javascript" src="{{ URL::asset('plugins/codemirror/addon/edit/closetag.js') }}"></script>
 
 <script type="text/javascript" src="{{ URL::asset('js/misjs/misfunciones_mirror.js') }}"></script>
+	
 
 <script>
 
-	@for ($i = 0; $i <count($datos[1]) ; $i++)
+	@for ($i = 0; $i < count($estructuraCategoria->tipos_archivos) ; $i++)
+		
+		@php 
+			$name_column =  $estructuraCategoria->tipos_archivos[$i]->nombre_column;
+		@endphp	
 
-		@if ($codigo[0]->$datos[1][$i] !="")
-				
-				declararelementosmirrorThtml('{{ $datos[1][$i] }}','{{ $i }}')	;		
-						
+		@if ($codigo[0]->$name_column !="")	
+				declararelementosmirrorThtml('{{ $estructuraCategoria->tipos_archivos[$i]->extension_archivo }}','{{ $estructuraCategoria->tipos_archivos[$i]->nombre_column}}')	;		
 		@endif
-
 	@endfor
     
 </script>
+
 
 @stop

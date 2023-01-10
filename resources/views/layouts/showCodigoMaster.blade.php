@@ -1,3 +1,8 @@
+<?php
+//dd($codigo[0]->colum_1);
+//dd($estructuraCategoria->tipos_archivos[$i]->nombre);
+
+?>
 @extends('indexMaster')
 
 @section('title')
@@ -18,7 +23,7 @@ Recordatorio
 @section('contenidoAbajoderecha')
 	<div class="container-fluid margin-bottom-20px">
 		<div class="row">
-			<div class="col-md-12"><h1 class="titulo">{{ $codigo[0]->nombre }}</h1></div>
+			<div class="col-md-12"><h1 class="titulo">{{ $codigo[0]->nombre  }}</h1></div>
 		</div>
 		<div class="row">
 			<div class="col-md-12"><br><br></div>
@@ -44,21 +49,25 @@ Recordatorio
 		<!--Codigos-->
 		<div class="row codigos">
 		
-			@for ($i = 0; $i <count($datos[1]) ; $i++)
+			@for ($i = 0; $i <count($estructuraCategoria->tipos_archivos) ; $i++)
 
-				@php $name_lenguach = $datos[1][$i]; @endphp	
+				@php 
+					$name_lenguach = $estructuraCategoria->tipos_archivos[$i]->extension_archivo; 
+					$contador = $i+1;
+					$name_column = 'colum_'.$contador;
+				@endphp	
 
-				@if ($codigo[0]->$name_lenguach !="")
+				@if ($codigo[0]->$name_column !="")
 					<!--html-->
 					<div class="col-md-12 col-xs-12">
-						<h1 class="titulo grande">{{ $name_lenguach }}</h1>
+						<h1 class="titulo grande">{{ $estructuraCategoria->tipos_archivos[$i]->nombre }}</h1>
 						<br>
 
 						@if ($name_lenguach =='jquery')
 							  <?php $name_lenguach='javascript'; ?>
 						@endif
 
-						<pre class="language-{{ $name_lenguach }} line-numbers contenido-codigo"><code>{{ $codigo[0]->$name_lenguach }}</code>
+						<pre class="language-{{ $name_lenguach }} line-numbers contenido-codigo"><code>{{ $codigo[0]->$name_column }}</code>
 						</pre>
 					</div>
 				@endif

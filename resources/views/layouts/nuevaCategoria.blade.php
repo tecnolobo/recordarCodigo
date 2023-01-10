@@ -82,12 +82,41 @@ Nueva Categoria
 				{!! csrf_field() !!}
 
 				<div class="col-md-6 col-sm-6">
-					<input name="nombre" type="text" class="form-control  input-lg"  placeholder="Nombre">
+					<input name="nombrecategoria" type="text" class="form-control  input-lg"  placeholder="Nombre Categoria">
 				</div>
 				<div class="visible-xs margin-bottom-15px"></div>
 				<div class="col-md-6 col-sm-6">
 					<input type="file" name="imagen" class="form-control  input-lg">
 				</div>
+				<div class="row">
+					<div class="col-md-1">
+						<h3>Archivos</h3>
+					</div>
+					<div class="col-md-11 punteado margin-top-40px margin-bottom-30px visible-md visible-lg">
+					</div>
+				</div>
+				
+				<div id="archivos">
+					<div class="grupo-archivos">
+						<div class="col-md-6">
+							<input type="text" name="nombre[]" class="form-control  input-lg margin-bottom-20px"  placeholder="Nombre archivo">
+						</div>
+						<div class="col-md-6 margin-bottom-20px">
+							<select name="tipo_archivo[]" id="tipo" class="form-control  input-lg"  placeholder="Tipo de archivo">
+								<option value=" ">Seleccione un mimetype</option>
+
+								@foreach ($mime_type_files as $mime_type_file)
+										<option  value="{{ $mime_type_file->id }}">{{ $mime_type_file->nombre }}</option>
+								@endforeach
+
+							</select>
+						</div>	
+					</div>
+				</div>			
+				<div class="col-md-12">
+					<button onclick="createElementsTypeFiles()" class="btn btn-info btn-lg btn-block margin-top-20px"  type="button">Más</button>
+				</div>
+
 
 				<div class="col-md-12 margin-top-30px">
 					<textarea class="form-control  input-lg height-200" name="descripsion" placeholder="Descripsion"></textarea>

@@ -10,6 +10,8 @@ use Carbon\Carbon as cc;
 
 use App\ProyectoMasterHtml as PmHtml;
 
+use App\ProyectosMaster as PMaster;
+
 use App\ProyectoLaravel as Plaravel;
 
 use DB;
@@ -30,19 +32,19 @@ class RecordatorioController extends Controller
 
 
         $imagenes=DB::table('categorias')->get();
-        /*$codigos=PmHtml::find(3);
-        dd($codigos->created_at->toFormattedDateString());*/
+
         $paginadorlaravel = DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
-        //dd($paginadorlaravel[0]->created_at->toFormattedDateString());
-        $paginadorhtml = DB::table('proyecto_master_htmls')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6);
+
+        $paginadorhtml = DB::table('proyectos_master')
+        ->join('categorias','categorias.id_categoria','=','proyectos_master.id_categoria')
+        ->select('proyectos_master.nombre', 'proyectos_master.descripsion','proyectos_master.id', 'categorias.nombre as nombreCategoria', 'proyectos_master.created_at')
+        ->orderBy('id', 'desc')->paginate(6);
+
         $codigosRecordarhtml=$paginadorhtml->toArray();
         $codigosRecordarlaravel=$paginadorlaravel->toArray();
         $codigosRecordarlaravel =array_chunk($codigosRecordarlaravel['data'], 3, false);
         $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
-        /*echo "<pre>";
-        print_r($codigosRecordar);
-        echo "</pre>";
-        exit;*/
+
         return view('layouts.index',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml ,'codigosRecordarlaravel'=>$codigosRecordarlaravel, 'paginadorlaravel'=>$paginadorlaravel ]);
     }
 
@@ -55,8 +57,28 @@ class RecordatorioController extends Controller
     {   
         $imagenes=DB::table('categorias')->get();
         $categorias=DB::table('categorias')->get();
+        $estructucaCategorias=DB::table('categorias')->select('id_categoria','tipos_archivos')->get();
+        $machEstructure='';
+        $arraymargeMaster = Array();
         
-        return view('layouts.nuevoRecordatorio',['categorias'=>$categorias , 'imagenes'=>$imagenes]);
+        /*
+        convertimos de la tabla categorias la columna tipos_archivos que esta en formato json a un array para que todo el objecto que nos devuelva
+        la base de datos sea un array completo, no un array con valores json
+        */
+        for ($i=0; $i <count($estructucaCategorias) ; $i++) { 
+            
+            $id_categoria = array('id_categoria'=>$estructucaCategorias[$i]->id_categoria);
+            
+            $arrayJsonDecode = json_decode($estructucaCategorias[$i]->tipos_archivos,true);
+            
+
+            $arraymarge = array_merge($id_categoria,$arrayJsonDecode);
+
+            array_push($arraymargeMaster,$arraymarge);
+   
+        }
+        
+        return view('layouts.nuevoRecordatorio',['categorias'=>$categorias , 'imagenes'=>$imagenes, 'estructucaCategorias'=>$arraymargeMaster]);
     }
 
     /**
@@ -81,11 +103,11 @@ class RecordatorioController extends Controller
 
         /*primer parametro. datos que envia formulario, segundo parametro las reglas que se deben cumplir*/
 
-        $validator=Validator::make($request->all(),$reglas,$mensajes); 
+        //$validator=Validator::make($request->all(),$reglas,$mensajes); 
 
-
+        //$validator->fails()
         //si la validacion falla
-        if ($validator->fails()) {
+        if (false) {
 
             return redirect('/recordatorio')->withErrors($validator)->withInput();
 
@@ -93,75 +115,37 @@ class RecordatorioController extends Controller
         }else{//paso la validacion
             
             //si el proyecto no es laravel guardamos en la tabla proyectoMaster html
+            
+            $pMaster = new PMaster;
 
-            if($request->tipo != 2){
-                echo "entro a proyecto html";
-                echo $request->tipo;
-                $pmHtml = new PmHtml;
+            $dataTosend = [
+                'nombre'      => $request->nombre,
+                'descripsion' => $request->descripsion
+            ];
 
-                $html=htmlentities($request->html);
-                $css=htmlentities($request->css);
-                $php=htmlentities($request->php);;
-                $javascript=htmlentities($request->javascript);;
-                $jquery=htmlentities($request->jquery);
+            $columnsAdd =[];
 
-                $pmHtml::create([
-                'nombre'     => $request->nombre,
-                'descripsion'=>$request->descripsion,
-                'html'       => $html,
-                'css'        => $css,
-                'php'        => $php,
-                'javascript' =>$javascript,
-                'jquery'     => $jquery,
-                'id_categoria'=>$request->tipo,
-                ]);
-
-            }else{
-                echo $request->tipo;
-                echo "entro a app laravel";
-               $pLaravel= new Plaravel;
-
-               $modelo=htmlentities($request->modelo);
-               $vista=htmlentities($request->vista);
-               $controlador=htmlentities($request->controlador); 
-
-               $pLaravel::create([
-                'nombre'       => $request->nombre,
-                'descripsion'  => $request->descripsion,
-                'modelo'       => $modelo,
-                'vista'        => $vista,
-                'controlador'  => $controlador,
-                'id_categoria' =>$request->tipo,
-                ]);
+            foreach ($request->all() as $item => $value){
+                
+                
+                if(str_contains($item, 'colum')){
+                    $columnsAdd += array($item => htmlentities($value));
+                }
+                
+                
             }
+
+            $resultArray= array_merge($dataTosend,$columnsAdd);
+            
+            $resultArray += array('id_categoria'=>$request->tipo);
+
+            $pMaster::create($resultArray);
 
             $request->session()->flash('mensaje', 'Su informacion fuer guardada exitosamente');
             return redirect('/recordatorio');
 
         }
 
-        /*$id_categoria=$request->tipo;
-        $id_cat=explode("_",$id_categoria);
-        $id_cat=$id_cat[1];
-        if( empty($request->input('nombre'))){
-
-            echo "no hay nada";
-            $request->session()->flash('estado', 'Porfavor no deje el nombre Vacio');
-            return redirect('/recordatorio');
-
-        }else{
-
-            echo "si hay <br>";
-            echo "<br>";
-            print_r($request->all());
-        }*/
-
-
-       
-
-        
-       // $pmHtml::create(['nombre' => $request->nombre , 'id_categoria'=>$id_cat]);
-        //print_r($request->all());
     }
 
     /**
@@ -172,9 +156,59 @@ class RecordatorioController extends Controller
      */
     public function show($id)
     {
+
         $imagenes=DB::table('categorias')->get();
+
         //se hace la consulta relacionada de las tablas proyecto_master_htmls y coteogrias por el campo id_categoria
         //y se seleciona un solo registro por su id
+        $codigoMaster= DB::table('proyectos_master')
+        ->join('categorias','categorias.id_categoria','=','proyectos_master.id_categoria')
+        ->select(
+            'proyectos_master.nombre',
+            'proyectos_master.descripsion',
+            'proyectos_master.colum_1',
+            'proyectos_master.colum_2',
+            'proyectos_master.colum_3',
+            'proyectos_master.colum_4',
+            'proyectos_master.colum_5',
+            'proyectos_master.colum_6',
+            'proyectos_master.colum_7',
+            'proyectos_master.colum_8',
+            'proyectos_master.colum_9',
+            'proyectos_master.colum_10',
+            'categorias.nombre as tipo',
+            'categorias.id_categoria as id_tipo'
+            )->where('id',$id)
+            ->get();
+        /*
+        echo "<pre>";
+        print_r($codigoMaster);
+        exit();
+        echo "<pre>";*/
+        if(empty($codigoMaster)){
+            abort('404');
+        }
+
+        $estructuraCategoria= DB::table('categorias')->select('tipos_archivos')->where('id_categoria', $codigoMaster[0]->id_tipo)->get(); 
+        
+        $estructuraCategoria = json_decode($estructuraCategoria[0]->tipos_archivos);  
+
+        return view('layouts.showCodigoMaster',['imagenes'=>$imagenes, 'codigo'=>$codigoMaster, 'estructuraCategoria'=>$estructuraCategoria]);    
+        
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showCodeMasterHtmlProyect($id)
+    {   
+
+        $imagenes=DB::table('categorias')->get();
+
         $codigoMasterHtml= DB::table('proyecto_master_htmls')
         ->join('categorias','categorias.id_categoria','=','proyecto_master_htmls.id_categoria')
         ->select(
@@ -189,38 +223,40 @@ class RecordatorioController extends Controller
             'categorias.id_categoria as id_tipo'
             )->where('id',$id)
             ->get();
+        
 
-        if(empty($codigoMasterHtml)){
-            abort('404');
-        }
 
         switch ($codigoMasterHtml[0]->id_tipo) {
-            
+
             case 1:
                 $datos=array('html',array('html'));
                 break;
-
+        
             case 2:
                 $datos=array('laravel',array('modelo','vista','controlador'));
                 break;
-
+        
             case 3:
                 $datos=array('htmlycss',array('html','css'));
                 break;
-
+        
             case 4:
                 $datos=array('apphtml',array('html','css','javascript','jquery','php'));
                 break;
-
+        
             case 5:
                 $datos=array('javascript',array('html','css','javascript'));
                 break;
-
+        
             case 6:
                 $datos=array('php',array('html','php'));
                 break;
-
+        
             case 7:
+                $datos=array('jquery',array('html','css','jquery'));
+                break;
+        
+            case 28:
                 $datos=array('jquery',array('html','css','jquery'));
                 break;
             
@@ -228,29 +264,9 @@ class RecordatorioController extends Controller
                 # code...
                 break;
         }
-
-
-        /*echo $codigoMasterHtml[0]->tipo;
-        echo $codigoMasterHtml[0]->id_tipo;
-        dd($datos);
-        exit;*/
-        //dd($codigoMasterHtml);
-        return view('layouts.showCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMasterHtml, 'datos'=>$datos]);
-    }
-
-
-
-    public function showCodigoLaravel($id)
-    {
-        $imagenes=DB::table('categorias')->get();
-
-        $codigoLaravel=DB::table('proyecto_laravels')->where('id',$id)->get();
-
-        $datos= array('modelo','vista','controlador');   
-
-        //dd($codigoLaravel); 
-   
-        return view('layouts.showCodigoLaravel',['imagenes'=>$imagenes, 'codigo'=>$codigoLaravel, 'datos'=>$datos]);
+                
+        return view('layouts.showCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMasterHtml, 'datos'=>$datos]);    
+        
     }
 
 
@@ -279,27 +295,30 @@ class RecordatorioController extends Controller
         $camposActualizar= [];
 
         $id=$request->id;
-        $html=htmlentities($request->html);
-        $css=htmlentities($request->css);
-        $php=htmlentities($request->php);;
-        $javascript=htmlentities($request->javascript);;
-        $jquery=htmlentities($request->jquery);
 
         try {
 
-            // armamos el arreglo que pasaremos para actualiar el modelo(registro)
-            if($html != ""){ $camposActualizar['html'] = $html; }
-            if($css != ""){ $camposActualizar['css'] =  $css; }
-            if($php != ""){ $camposActualizar['php'] = $php; }
-            if($javascript != ""){ $camposActualizar['javascript'] = $javascript; }
-            if($jquery != ""){ $camposActualizar['jquery'] = $jquery; }
+
+            foreach ($request->all() as $item => $value){
+                                
+                if(str_contains($item, 'colum')){
+
+                    if($value !=""){
+                        $camposActualizar += array($item => htmlentities($value));
+                    }
+                    
+                }
+                
+                
+            }
+
 
             // creamos la nueva instancia del modelo a actualizar
-            $PmHtml= new PmHtml;
+            $PMaster= new PMaster;
+
 
             //le pasamos los elementos a actualizar al modelo con base al id
-            $PmHtml::where('id', $id)->update($camposActualizar);
-
+            $PMaster::where('id', $id)->update($camposActualizar);
 
             $request->session()->flash('success', 'Registro actualizado correctamente ');
 
@@ -318,9 +337,9 @@ class RecordatorioController extends Controller
 
     public function destroyCodigoHtml($id,Request $request)
     {   
-        $codigoEliminado=DB::table('proyecto_laravels')->where('id', '=', $id)->get();
+        $codigoEliminado=DB::table('proyectos_master')->where('id', '=', $id)->get();
         $codigoEliminado=$codigoEliminado[0]->nombre;
-        DB::table('proyecto_master_htmls')->where('id', '=', $id)->delete();
+        DB::table('proyectos_master')->where('id', '=', $id)->delete();
         //return "eliminado";
         $request->session()->flash('mensaje', 'El codigo  Para "'.$codigoEliminado.'" Fue eliminado');
         return redirect()->to('/');
@@ -425,68 +444,36 @@ class RecordatorioController extends Controller
         $imagenes=DB::table('categorias')->get();
         //se hace la consulta relacionada de las tablas proyecto_master_htmls y coteogrias por el campo id_categoria
         //y se seleciona un solo registro por su id
-        $codigoMasterHtml= DB::table('proyecto_master_htmls')
-        ->join('categorias','categorias.id_categoria','=','proyecto_master_htmls.id_categoria')
+        $codigoMaster= DB::table('proyectos_master')
+        ->join('categorias','categorias.id_categoria','=','proyectos_master.id_categoria')
         ->select(
-            'proyecto_master_htmls.nombre',
-            'proyecto_master_htmls.descripsion',
-            'proyecto_master_htmls.html',
-            'proyecto_master_htmls.css',
-            'proyecto_master_htmls.php',
-            'proyecto_master_htmls.javascript',
-            'proyecto_master_htmls.jquery',
+            'proyectos_master.nombre',
+            'proyectos_master.descripsion',
+            'proyectos_master.colum_1',
+            'proyectos_master.colum_2',
+            'proyectos_master.colum_3',
+            'proyectos_master.colum_4',
+            'proyectos_master.colum_5',
+            'proyectos_master.colum_6',
+            'proyectos_master.colum_7',
+            'proyectos_master.colum_8',
+            'proyectos_master.colum_9',
+            'proyectos_master.colum_10',
             'categorias.nombre as tipo',
             'categorias.id_categoria as id_tipo'
             )->where('id',$id)
             ->get();
 
-        if(empty($codigoMasterHtml)){
+        if(empty($codigoMaster)){
             abort('404');
         }
 
+        
+        $estructuraCategoria= DB::table('categorias')->select('tipos_archivos')->where('id_categoria', $codigoMaster[0]->id_tipo)->get(); 
+        
+        $estructuraCategoria = json_decode($estructuraCategoria[0]->tipos_archivos);  
 
-        switch ($codigoMasterHtml[0]->id_tipo) {
-            
-            case 1:
-                $datos=array('html',array('html'));
-                break;
-
-            case 2:
-                $datos=array('laravel',array('modelo','vista','controlador'));
-                break;
-
-            case 3:
-                $datos=array('htmlycss',array('html','css'));
-                break;
-
-            case 4:
-                $datos=array('apphtml',array('html','css','javascript','jquery','php'));
-                break;
-
-            case 5:
-                $datos=array('javascript',array('html','css','javascript'));
-                break;
-
-            case 6:
-                $datos=array('php',array('html','php'));
-                break;
-
-            case 7:
-                $datos=array('jquery',array('html','css','jquery'));
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-
-
-        /*echo $codigoMasterHtml[0]->tipo;
-        echo $codigoMasterHtml[0]->id_tipo;
-        dd($datos);
-        exit;*/
-        //dd($codigoMasterHtml);
-        return view('layouts.editCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMasterHtml, 'id'=>$id, 'datos'=>$datos]);
+        return view('layouts.editCodigoMasterHtml',['imagenes'=>$imagenes, 'codigo'=>$codigoMaster, 'id'=>$id, 'estructuraCategoria'=>$estructuraCategoria]);
         
     }
 

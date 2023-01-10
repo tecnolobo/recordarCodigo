@@ -1,3 +1,6 @@
+<?php
+//dd($datos);
+?>
 @extends('indexMaster')
 
 @section('title')
@@ -45,22 +48,23 @@ Proyectos Laravel
 		<div class="row codigos">
 			
 			<!--recorremos $datos Array que contene  las llaves modelos, vista controlador-->
-			@for ($i = 0; $i <count($datos); $i++)
+			@for ($i = 0; $i <count($datos[1]); $i++)
 				
-				@if ($codigo[0]->$datos[$i] !=='')
+				@php $name_lenguach = $datos[1][$i]; @endphp	
+
+				@if ($codigo[0]->$name_lenguach !=='')
 					
 					<!--html-->
 					<div class="col-md-12 col-xs-12">
-						<h1 class="titulo grande">{{ $datos[$i] }}</h1>
+						<h1 class="titulo grande">{{ $name_lenguach }}</h1>
 						<br>
 
-						<pre class="language-php line-numbers contenido-codigo"><code>{{ $codigo[0]->$datos[$i] }}</code>
+						<pre class="language-php line-numbers contenido-codigo"><code>{{ $codigo[0]->$name_lenguach }}</code>
 						</pre>
 					</div>
-
-
 					
-				@endif
+				@endif        
+				
 
 			@endfor
 

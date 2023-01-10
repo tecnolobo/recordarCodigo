@@ -15,6 +15,7 @@ class CreateCategoriasTable extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id_categoria');
             $table->string('nombre');
+            $table->jsonb('tipos_archivos');
             $table->longText('descripsion');
             $table->string('imagen');
             /*$table->integer('id_tipo_noticia')->index();

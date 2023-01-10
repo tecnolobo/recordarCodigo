@@ -1,3 +1,6 @@
+<?php 
+//dd($estructucaCategorias);
+?>
 @extends('indexMaster')
 
 @section('title')
@@ -135,96 +138,6 @@ Nuevo recordatorio
 				<!--Codigo-->
 				<div class="col-md-12" id="codigo">
 
-					<div id="html" class="row margin-top-20px margin-bottom-50px codeitem">
-						<div class="col-md-1"></div>
-						<!--Textarea Html-->
-						<div  class="col-md-10">
-							<div name="html" class="btn btn-info eliminar-textarea ">x</div>
-							<div name="html" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Html</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="html"></textarea>
-						</div>
-						<!--/Textarea Html-->
-
-						<div class="col-md-1"></div>
-					</div>
-
-					<!--Css-->
-					<div id="css" class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>
-						<!--Textarea Css-->
-						<div  class="col-md-10 ">
-						<div name="css" class="btn btn-info eliminar-textarea ">x</div>
-						<div name="css" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Css</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="css"></textarea>
-						</div>
-						<!--/Textarea Css-->
-						<div class="col-md-1"></div>								
-					</div>
-
-					<!--Php-->
-					<div id="php" class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>	
-						<!--Textarea Php-->
-						<div  class="col-md-10 ">
-							<div name="php" class="btn btn-info eliminar-textarea ">x</div>
-							<div name="php" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Php</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="php"></textarea>
-						</div>
-						<!--/Textarea Php-->
-						<div class="col-md-1"></div>		
-					</div>
-
-					<!--Javascript-->
-					<div id="javascript"  class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>
-						<!--Textarea Javascript-->
-						<div class="col-md-10 ">
-							<div name="javascript"  class="btn btn-info eliminar-textarea ">x</div>
-							<div name="javascript" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">JavaScript</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="javascript"></textarea>
-						</div>
-						<!--/Textarea Javascript-->
-						<div class="col-md-1"></div>		
-					</div>
-					
-					<!--Jquery-->
-					<div id="jquery" class="row codeitem margin-bottom-50px">
-						<div class="col-md-1"></div>	
-						<!--Textarea Jquery-->
-						<div  class="col-md-10 ">
-							<div name="jquery" class="btn btn-info eliminar-textarea">x</div>
-							<div name="jquery" class="btn btn-info eliminar-textarea visible-xs ">x</div>
-							<div class="row">
-								<div class="col-md-12">
-									<h2 class="font-size-30 margin-bottom-10px">Jquery</h2>
-								</div>
-							</div>
-							<textarea class="form-control  input-lg height-200" name="jquery"></textarea>
-						</div>
-						<!--/Textarea Jquery-->
-						<div class="col-md-1"></div>	
-					</div>
-
 
 				</div>
 				<!--/codigo-->
@@ -244,6 +157,15 @@ Nuevo recordatorio
 			$().UItoTop({ easingType: 'easeOutQuart' });
 			
 		});
+
+	@php 
+		
+		echo "var estructureCategory = '".json_encode($estructucaCategorias)."';";
+		
+	@endphp	
+		
+		estructureCategory = JSON.parse(estructureCategory);
+
 
 </script>
 

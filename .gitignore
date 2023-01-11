@@ -1,0 +1,7 @@
+# Ignora Todo de la carpeta vendor
+vendor/*
+
+# Ignora Todas las imagenes
+public/img/*
+public/*.zip
+public/*.rar

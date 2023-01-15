@@ -12,7 +12,7 @@ public/*.zip
 public/*.rar
 
 #imagenes
-.png
-.jpng
-.jpg
-.gif
+*.png
+*.jpng
+*.jpg
+*.gif

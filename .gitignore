@@ -1,0 +1,12 @@
+# Laravel
+/bootstrap/compiled.php
+.env.*.php
+.env.*
+/vendor
+/node_modules
+.env
+
+# Ignora Todas las imagenes
+public/img/*
+public/*.zip
+public/*.rar

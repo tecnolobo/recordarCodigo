@@ -10,3 +10,9 @@
 public/img/*
 public/*.zip
 public/*.rar
+
+#imagenes
+*.png
+*.jpng
+*.jpg
+*.gif

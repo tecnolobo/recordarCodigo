@@ -112,8 +112,6 @@
 
 /*****************Mis css estilos********************/
 
-
-
 time{
 	color:#aaa;
 	font-size: 15px;
@@ -122,12 +120,23 @@ time{
 	right: 31px;
 }
 
+/*Inicio Cars*/
+.thumbnail{
+	max-height: 232px;
+}
+
+.thumbnail p {
+	overflow: hidden;
+	max-height: 45px;
+}
+
 .thumbnail:hover{
 	-moz-box-shadow:3px 0px 9px -3px #666;/* el primer valor es x el 2 es y. el 3 la dureza d la sombra 4 el ancho de la sombra*/
 	-webkit-box-shadow:3px 0px 9px -3px #666;/*verde*/
 	-ms-box-shadow:3px 0px 9px -3px #666;
 	-o-box-shadow:3px 0px 9px -3px #666;
 }
+/*Fin Cars*/
 
 .punteado{
 	border-style: dotted; 

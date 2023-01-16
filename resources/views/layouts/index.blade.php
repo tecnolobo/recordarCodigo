@@ -101,18 +101,20 @@ Home Recordatorios
 					                    <h3 title="{{ $codigosRecordarhtml[$i][$j]->nombre }}">{{ $codigosRecordarhtml[$i][$j]->nombre }}</h3>
 					                    <time class="tiempo"> {{ date('d F Y', strtotime( $codigosRecordarhtml[$i][$j]->created_at)) }}</time>
 					                    <p class="">{{ $codigosRecordarhtml[$i][$j]->descripsion }}</p>
-										<p class=""> ( {{$codigosRecordarhtml[$i][$j]->nombreCategoria}} )</p>
-					                    <br class="">
-					                    <p>
-					                        <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
-					                        <a class="btn btn-danger  btn-xs hidden-tbl hidden-portatil hidden-netbok visible-tbl  hidden-cel hidden-mds" role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id )}}')">Eliminar</a>
-					                    	 <a class="btn btn-default btn-xs hidden-tbl hidden-portatil hidden-netbok hidden-mds hidden-cel" href="{{ URL::asset('editarCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}" >Editar</a>
-					                    	<a class="btn btn-default btn-xs hidden-portatil hidden-cel hidden-netbok hidden-mds papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $codigosRecordarhtml[$i][$j]->nombre }}" data-content="{{ $codigosRecordarhtml[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
-					                        
-					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
-					                        <a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id) }}','{{ $codigosRecordarhtml[$i][$j]->id }}')">Eliminar</a>
-					                        <a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('editarCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}" >Editar</a>
-					                    </p>
+															<p class=""> ( {{$codigosRecordarhtml[$i][$j]->nombreCategoria}} )</p>
+					                    <br class="">					                    
+															<div class="visible-xs-block">
+																<a class="btn btn-default btn-xs " href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
+																<a class="btn btn-danger  btn-xs " role="button" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id )}}')">Eliminar</a>
+																<a class="btn btn-default btn-xs " href="{{ URL::asset('editarCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}" >Editar</a>
+																<a class="btn btn-default btn-xs papa" href="javascript:void(0)" role="button" data-placement="top" data-toggle="popover" title="{{ $codigosRecordarhtml[$i][$j]->nombre }}" data-content="{{ $codigosRecordarhtml[$i][$j]->descripsion }}"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></a>
+															</div>															
+															<div class="visible-sm-block	 visible-md-block visible-lg-block">
+																<a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('showCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}">Leer</a>
+																<a class="btn btn-danger visible-tbl hidden-xxs" onclick="eliminarRecordatorio('{{ URL::asset('destroyCodigoHtml/'.$codigosRecordarhtml[$i][$j]->id) }}','{{ $codigosRecordarhtml[$i][$j]->id }}')">Eliminar</a>
+																<a class="btn btn-default visible-tbl hidden-xxs" href="{{ URL::asset('editarCodigo/'.$codigosRecordarhtml[$i][$j]->id) }}" >Editar</a>
+															</div>
+					                    
 					                </div>
 					            </div>
 					        </div>

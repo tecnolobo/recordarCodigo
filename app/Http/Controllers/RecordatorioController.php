@@ -129,7 +129,7 @@ class RecordatorioController extends Controller
                 
                 
                 if(str_contains($item, 'colum')){
-                    $columnsAdd += array($item => htmlentities($value));
+                    $columnsAdd += array($item => htmlentities(base64_decode($value)));
                 }
                 
                 

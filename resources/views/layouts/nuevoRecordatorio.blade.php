@@ -80,7 +80,7 @@ Nuevo recordatorio
 
 		<div class="row">
 			<!--Inicio formulario-->
-			<form name="descipsion" method="post" action="{{ url('guardarRecordatorio') }}">
+			<form name="descipsion" method="post" id="nuevoRecordatorio" action="{{ url('guardarRecordatorio') }}">
 				
 				{!! csrf_field() !!}
 
@@ -126,7 +126,7 @@ Nuevo recordatorio
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-4 margin-top-30px">
-							<button class="btn btn-info btn-lg" type="submit">Guardar codigo</button>
+							<button class="btn btn-info btn-lg" onclick="EncodeDataForm()" >Guardar codigo</button>
 						</div>
 						<div class="col-md-4"></div>
 					</div>

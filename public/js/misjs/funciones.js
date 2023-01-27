@@ -60,6 +60,23 @@ function createElementsTypeFiles(){
 	mid.appendChild(clon);
 }
 
+/**
+ * Codifica todos los valores de los impus de formulario en base64 
+*/
+function EncodeDataForm(){
+
+	var formulario = document.getElementById("nuevoRecordatorio");
+	
+	for (let i=0; i< formulario.elements.length; i++) {
+			if(i>=6){
+				formulario.elements[i].value = btoa(formulario.elements[i].value);			
+			}
+	}
+
+	formulario.submit();
+
+}
+
 
 $(document).ready(function() {	
 

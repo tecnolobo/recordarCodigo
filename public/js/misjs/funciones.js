@@ -63,14 +63,14 @@ function createElementsTypeFiles(){
 /**
  * Codifica todos los valores de los impus de formulario en base64 
 */
-function EncodeDataForm(){
+function EncodeDataForm(id){
 
-	var formulario = document.getElementById("nuevoRecordatorio");
-	
+	var formulario = document.getElementById(id);
 	for (let i=0; i< formulario.elements.length; i++) {
-			if(i>=6){
-				formulario.elements[i].value = btoa(formulario.elements[i].value);			
-			}
+
+		if (formulario.elements[i].name.match(/colum./)) { 
+			formulario.elements[i].value = btoa(formulario.elements[i].value);	
+		}
 	}
 
 	formulario.submit();

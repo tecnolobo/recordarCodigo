@@ -75,7 +75,7 @@ Recordatorio
 		<!--Codigos-->
 		<div class="row codigos">
 		
-			<form action="{{url('actualizarCodigoMasterHtml')}}" method="post">
+			<form action="{{url('actualizarCodigoMasterHtml')}}" id="editandoRecordatorio" method="post">
 				
 				{!! csrf_field() !!}
 				        
@@ -116,7 +116,7 @@ Recordatorio
 							
 						</div>
 						<div class="col-md-2 margin-bottom-15px">
-							<input type="submit" name="Guardar" value="Guardar" class="btn btn-default btn-block btn-md">
+							<input onclick="EncodeDataForm('editandoRecordatorio')" name="Guardar" value="Guardar" class="btn btn-default btn-block btn-md">
 						</div>
 					</div>
 					
@@ -178,6 +178,7 @@ Recordatorio
 <script type="text/javascript" src="{{ URL::asset('plugins/codemirror/addon/edit/closetag.js') }}"></script>
 
 <script type="text/javascript" src="{{ URL::asset('js/misjs/misfunciones_mirror.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/misjs/funciones.js') }}"></script>
 	
 
 <script>

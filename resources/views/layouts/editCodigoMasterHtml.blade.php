@@ -116,7 +116,7 @@ Recordatorio
 							
 						</div>
 						<div class="col-md-2 margin-bottom-15px">
-							<input onclick="EncodeDataForm('editandoRecordatorio')" name="Guardar" value="Guardar" class="btn btn-default btn-block btn-md">
+							<input onclick="EncodeDataForm('editandoRecordatorio','s')" name="Guardar" value="Guardar" class="btn btn-default btn-block btn-md">
 						</div>
 					</div>
 					
@@ -182,15 +182,19 @@ Recordatorio
 	
 
 <script>
+	//se guarda todas las instancia creadas en una variable(instanciaCodemirror) para poder ser modificadas en cualquier parte del programa
+	instanciaCodemirror = [];
+	objetoIndividual = {};
 
 	@for ($i = 0; $i < count($estructuraCategoria->tipos_archivos) ; $i++)
 		
 		@php 
 			$name_column =  $estructuraCategoria->tipos_archivos[$i]->nombre_column;
 		@endphp	
-
+		
 		@if ($codigo[0]->$name_column !="")	
-				declararelementosmirrorThtml('{{ $estructuraCategoria->tipos_archivos[$i]->extension_archivo }}','{{ $estructuraCategoria->tipos_archivos[$i]->nombre_column}}')	;		
+				objetoIndividual = declararelementosmirrorThtml('{{ $estructuraCategoria->tipos_archivos[$i]->extension_archivo }}','{{ $estructuraCategoria->tipos_archivos[$i]->nombre_column}}')	;		
+				instanciaCodemirror.push(objetoIndividual);
 		@endif
 	@endfor
     

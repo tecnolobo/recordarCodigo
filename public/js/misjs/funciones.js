@@ -63,16 +63,25 @@ function createElementsTypeFiles(){
 /**
  * Codifica todos los valores de los impus de formulario en base64 
 */
-function EncodeDataForm(id){
+function EncodeDataForm(id,iscodemirror){
 
 	var formulario = document.getElementById(id);
-	for (let i=0; i< formulario.elements.length; i++) {
 
-		if (formulario.elements[i].name.match(/colum./)) { 
-			formulario.elements[i].value = btoa(formulario.elements[i].value);	
+	if (iscodemirror.toUpperCase()=="S"){
+		for (let index = 0; index < instanciaCodemirror.length; index++) {
+			instanciaCodemirror[index].setValue( btoa(instanciaCodemirror[index].getValue()) );
 		}
-	}
+	}else{
+		
+		for (let i=0; i< formulario.elements.length; i++) {
 
+			if (formulario.elements[i].name.match(/colum./)) { 
+					formulario.elements[i].value = btoa(formulario.elements[i].value);				
+			}		
+		}
+		console.log($(formulario));
+	}
+		
 	formulario.submit();
 
 }

@@ -1,7 +1,7 @@
 function declararelementosmirrorThtml(my_mimetype,id){
 
 
-	var myCodeMirror = CodeMirror.fromTextArea(document.getElementById(id),{
+	 myCodeMirror = CodeMirror.fromTextArea(document.getElementById(id),{
     	
   		mode: my_mimetype,
   		lineNumbers: true,
@@ -18,5 +18,6 @@ function declararelementosmirrorThtml(my_mimetype,id){
       autoCloseTags: true,
 
     });
-
+    
+    return myCodeMirror;
 }

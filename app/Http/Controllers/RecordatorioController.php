@@ -304,7 +304,7 @@ class RecordatorioController extends Controller
                 if(str_contains($item, 'colum')){
 
                     if($value !=""){
-                        $camposActualizar += array($item => htmlentities($value));
+                        $camposActualizar += array($item => base64_decode(htmlentities($value)));
                     }
                     
                 }

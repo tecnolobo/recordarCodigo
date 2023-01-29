@@ -126,7 +126,7 @@ Nuevo recordatorio
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-4 margin-top-30px">
-							<button class="btn btn-info btn-lg" onclick="EncodeDataForm('nuevoRecordatorio')" >Guardar codigo</button>
+							<button class="btn btn-info btn-lg" onclick="EncodeDataForm('nuevoRecordatorio','N')" >Guardar codigo</button>
 						</div>
 						<div class="col-md-4"></div>
 					</div>

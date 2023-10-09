@@ -44,7 +44,7 @@ class CategoriasController extends Controller
         $paginadorcategorias = DB::table('categorias')->select('id_categoria', 'nombre','descripsion', 'imagen')->orderBy('id_categoria', 'desc')->paginate(6);
         $categoriasStructure=$paginadorcategorias->toArray();
         $categoriasStructure =array_chunk($categoriasStructure['data'], 3, false);
-
+        
         return view('layouts.allcategorias',['categoriasStructure'=>$categoriasStructure , 'imagenes'=>$imagenes, 'paginadorcategorias'=>$paginadorcategorias]);
     }
 
@@ -269,4 +269,63 @@ class CategoriasController extends Controller
         $request->session()->flash('mensaje', 'La categoria  "'.$nombreCategoriaEliminada.'" Fue eliminada');
         return redirect()->to('categorias');
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function BuscarPorCategoria(Request $request, $id_categoria)
+    {   
+        $buscar = str_replace(' ','_',strtoupper($request->buscar));
+
+        $imagenes=DB::table('categorias')->get();
+        $categorias=DB::table('categorias')->get();
+
+        $paginadorcategorias = DB::table('proyectos_master')
+        ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')
+        ->whereRaw('id_categoria = '.$id_categoria.' and replace(upper(nombre),\' \',\'_\') like \'%'.$buscar.'%\'')
+        // ->whereRaw('replace(upper(nombre),\' \',\'_\')', 'like', '%'.$buscar.'%')
+        ->orderBy('id_categoria', 'desc')
+        ->paginate(6);
+        
+        $categoriasStructure=$paginadorcategorias->toArray();
+        $paginadorcategorias->appends(['buscar' => $buscar]);
+        $categoriasStructure =array_chunk($categoriasStructure['data'], 3, false);
+        
+        // echo "<pre>";
+        // print_r($categoriasStructure);
+        // echo "<pre>";
+        // exit;
+
+        $urlACategoria= route('categoriaById',['id'=>$id_categoria]);
+        /*verificamos sino existen elementos*/
+        if(!empty($categoriasStructure)){
+
+            $buscar = str_replace('_',' ',strtolower($buscar)) ;
+            $request->session()->flash('busqueda', 
+            '<h3>
+                <span class="label label-success">'.$buscar.'
+                    <a href="'.$urlACategoria.'" class="badge" style="color:black"><span>x</span></a>
+                </span>
+            </h3>');
+            
+            return view('layouts.allcategorias',['categoriasStructure'=>$categoriasStructure , 'imagenes'=>$imagenes, 'paginadorcategorias'=>$paginadorcategorias]);
+           
+        }else{
+            //Si no existen resultados redirigimos  
+            $buscar = str_replace('_',' ',strtolower($buscar)) ;
+            $request->session()->flash('mensaje', 'Lo sentimos pero no se an encontrado Coincidencias');
+            $request->session()->flash('busqueda', '<h3><span class="label label-danger">'.$buscar.'</span></h3>');
+            return redirect()->route('categoriaById',['id'=>$id_categoria]);;
+        
+        }
+
+    }
+
+
+    
+
 }

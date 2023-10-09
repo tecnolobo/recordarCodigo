@@ -364,13 +364,13 @@ class RecordatorioController extends Controller
 
         $imagenes=DB::table('categorias')->get();
 
-        $paginadorhtml = DB::table('proyecto_master_htmls')
+        $paginadorcategorias = DB::table('proyectos_master')
         ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')
         ->orderBy('id', 'desc')
         ->where('id_categoria',$id)
         ->paginate(6);
         
-        $codigosRecordarhtml=$paginadorhtml->toArray();
+        $codigosRecordarhtml=$paginadorcategorias->toArray();
         
         $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
         
@@ -386,7 +386,7 @@ class RecordatorioController extends Controller
         /*verificamos sino existen elementos*/
         if(!empty($codigosRecordarhtml)){
             
-            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml, 'nombre'=>$nombre_categoria  ]);
+            return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorcategorias'=>$paginadorcategorias, 'nombre'=>$nombre_categoria,'id_categoria'=>$id ]);
            
         }else{
 
@@ -400,16 +400,56 @@ class RecordatorioController extends Controller
 
     public function buscar(Request $request)
     {   
-        $buscar = $request->buscar;
+        $buscar = str_replace(' ','_',strtoupper($request->buscar));
 
         $imagenes=DB::table('categorias')->get();
 
-        $paginadorhtml = DB::table('proyecto_master_htmls')
+        $paginadorlaravel = DB::table('proyecto_laravels')->select('nombre', 'descripsion','id', 'created_at')->orderBy('id', 'desc')->paginate(6,['*'],'laraPage');
+
+        $paginadorhtml = DB::table('proyectos_master')
+        ->join('categorias','categorias.id_categoria','=','proyectos_master.id_categoria')
+        ->select('proyectos_master.nombre', 'proyectos_master.descripsion','proyectos_master.id', 'categorias.nombre as nombreCategoria', 'proyectos_master.created_at')
+        ->whereRaw('upper(proyectos_master.nombre) like \'%'.$buscar.'%\'')
+        ->orderBy('id', 'desc')->paginate(6);
+
+        $paginadorhtml->appends(['buscar' => $buscar]);
+        $codigosRecordarhtml=$paginadorhtml->toArray();
+        $codigosRecordarlaravel=$paginadorlaravel->toArray();
+        $codigosRecordarlaravel =array_chunk($codigosRecordarlaravel['data'], 3, false);
+        $codigosRecordarhtml =array_chunk($codigosRecordarhtml['data'], 3, false);
+
+        if(!empty($codigosRecordarhtml)){
+            $buscar = str_replace('_',' ',strtolower($buscar)) ;
+            $request->session()->flash('busqueda', 
+            '<h3>
+                <span class="label label-success">'.$buscar.'
+                    <a href="/" class="badge" style="color:black"><span>x</span></a>
+                </span>
+            </h3>');
+            return view('layouts.index',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml ,'codigosRecordarlaravel'=>$codigosRecordarlaravel, 'paginadorlaravel'=>$paginadorlaravel ]);
+           
+        }else{
+
+            //Si no existen resultados redirigimos 
+            $buscar = str_replace('_',' ',strtolower($buscar)) ; 
+            $request->session()->flash('mensaje', 'Lo sentimos pero no se an encontrado Coincidencias');
+            $request->session()->flash('busqueda', '<h3><span class="label label-danger">'.$buscar.'</span></h3>');
+            return redirect('/');
+        
+        }
+
+
+        /*
+        $buscar = str_replace(' ','_',strtoupper($request->buscar));
+
+        $imagenes=DB::table('categorias')->get();
+
+        $paginadorhtml = DB::table('proyectos_master')
         ->select('nombre', 'descripsion','id', 'id_categoria', 'created_at')
-        ->where('nombre', 'like', '%'.$buscar.'%')
+        ->whereRaw('upper(nombre) like \'%'.$buscar.'%\'')
         ->orderBy('id', 'desc')
         ->paginate(6);
-
+        
         
         //Se le agrega el parametro de busqueda al paginador
         $paginadorhtml->appends(['buscar' => $buscar]);
@@ -421,19 +461,19 @@ class RecordatorioController extends Controller
 
         
         
-        /*verificamos sino existen elementos*/
         if(!empty($codigosRecordarhtml)){
             $request->session()->flash('busqueda', '<h3><span class="label label-success">'.$buscar.'</span></h3>');
             return view('layouts.categorias',['imagenes'=>$imagenes , 'codigosRecordarhtml'=>$codigosRecordarhtml , 'paginadorhtml'=>$paginadorhtml, 'nombre'=>'Resultados']);
            
         }else{
 
-            //Si no existen resultados redirigimos  
+            //Si no existen resultados redirigimos 
+            $buscar = str_replace('_',' ',strtolower($buscar)) ; 
             $request->session()->flash('mensaje', 'Lo sentimos pero no se an encontrado Coincidencias');
             $request->session()->flash('busqueda', '<h3><span class="label label-danger">'.$buscar.'</span></h3>');
             return redirect('/');
         
-        }
+        }*/
 
     }
 

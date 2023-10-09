@@ -39,10 +39,12 @@ Route::get('showCodigoLaravel/{id}',"RecordatorioController@showCodigoLaravel")-
 */
 
 
-Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+');
+Route::get('/categoria/{id}',"RecordatorioController@categoria")->where('id','[0-9]+')->name('categoriaById');
 Route::get('recordatorio',"RecordatorioController@create");
 Route::post('guardarRecordatorio',"RecordatorioController@store");
 Route::get('buscar',"RecordatorioController@buscar")->where('b',"[a-zA-z]+");
+Route::get('/categoria/{id_categoria?}/buscar',"CategoriasController@BuscarPorCategoria")->where('id_categoria','[0-9]+')->where('b',"[a-zA-z]+")
+->name('buscarPorCategoria');
 Route::get('/cache', function () {$exitCode = Artisan::call('cache:clear');  Artisan::call('config:clear'); Artisan::call('view:clear'); });
 
 

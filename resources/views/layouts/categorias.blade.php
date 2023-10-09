@@ -33,7 +33,7 @@ Home Recordatorios
     <div class="row">
        	
        	<!--fomrulario-->
-		<form id="miformulario" action="{{ url('buscar') }}" method="post">
+		<form id="miformulario" action="{{ route('buscarPorCategoria',['id_categoria' => $id_categoria]) }}" method="get">
 			
 			{!! csrf_field() !!}
 			
@@ -43,7 +43,8 @@ Home Recordatorios
 		          <i class="fa fa-plus"></i> &nbsp
 		        </button>  
 		      </span>
-		      <input type="text" name="buscar" onkeydown="javascript:enviarFormuarioConEnter(event,'#miformulario')" class="form-control" placeholder="Por nombre o descripsion">
+		      <!-- <input type="hidden" name="id_categoria" value="{{$id_categoria}}" > -->
+					<input type="text" name="buscar" onkeydown="javascript:enviarFormuarioConEnter(event,'#miformulario')" class="form-control" placeholder="Por nombre o descripsion">
 		      <span class="input-group-btn">
 		         <input type="submit" name="Go!" value="Go!" class="btn btn-default"  type="button"> 
 		      </span>
@@ -130,7 +131,7 @@ Home Recordatorios
 					<!--Paginacion-->
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<div class="margin-top-50px paghtml">{!! $paginadorhtml->render() !!}</div>
+							<div class="margin-top-50px paghtml">{!! $paginadorcategorias->render() !!}</div>
 						</div>
 					</div>
 					<!--/Paginacion-->
